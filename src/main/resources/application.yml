@@ -1,0 +1,33 @@
+server:
+  port: 8089
+  context-path: /learnMore
+#  ssl:
+#    key-store: .keystore
+#    key-store-password: 123456
+#    key-store-type: JKS
+#    key-alias: ssldemo
+spring:
+  profiles:
+    active: dev
+---
+spring:
+  profiles: pro
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/springboot
+    username: root
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+person:
+  name: fengjie
+  age: 24
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/springboot
+    username: root
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+#person:
+#  name: someone
+#  age: 999
