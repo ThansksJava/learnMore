@@ -12,18 +12,28 @@ import javax.persistence.Id;
 //@ConfigurationProperties(prefix = "person")
 @Entity
 public class Person {
-    private long id;
+    private String id;
     private String name;
     private int age;
     private String address;
+
+    public Person() {
+    }
+
+    public Person(String name, int age, String address) {
+        this.name = name;
+        this.age = age;
+        this.address = address;
+    }
+
     @Id
     @GenericGenerator(strategy = "uuid",name="pk_person")
     @GeneratedValue(generator = "pk_person")
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
     @Column(name = "name" )

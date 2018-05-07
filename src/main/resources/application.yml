@@ -9,15 +9,15 @@ server:
 spring:
   profiles:
     active: dev
-  jpa:
-    database-platform: org.hibernate.dialect.MySQL5Dialect
-    database: mysql
-    generate-ddl: true
-    hibernate:
-      ddl-auto: update
-      naming:
-        strategy: org.hibernate.cfg.DefaultComponentSafeNamingStrategy
-    show-sql: true
+#  jpa:
+#    database-platform: org.hibernate.dialect.MySQL5Dialect
+#    database: mysql
+#    generate-ddl: true
+#    hibernate:
+#      ddl-auto: update
+#      naming:
+#        strategy: org.hibernate.cfg.DefaultComponentSafeNamingStrategy
+#    show-sql: true
 #spring.jpa.properties.*
 #spring.jpa.properties.hibernate.hbm2ddl.auto=update
 #spring.jpa.properties.hibernate.show_sql=true
@@ -41,6 +41,16 @@ spring:
     username: root
     password:
     driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    database: mysql
+    generate-ddl: true
+#     妈的竟然不管用，哪儿的问题呢
+    hibernate:
+      ddl-auto: create
+      naming:
+        strategy: org.hibernate.cfg.DefaultComponentSafeNamingStrategy
+    show-sql: true
 #person:
 #  name: someone
 #  age: 999
