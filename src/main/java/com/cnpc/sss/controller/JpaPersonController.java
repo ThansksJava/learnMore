@@ -5,6 +5,7 @@ import com.cnpc.sss.domain.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @Author fengjie
@@ -12,12 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Date Created in 2018/5/7
  * @Time 13:51
  */
-@Controller
+@RestController
 public class JpaPersonController {
     @Autowired
     private PersonReposity personReposity;
     @RequestMapping("/save")
-    public void savePerson(){
-        personReposity.save(new Person("fengjie",18,"shandong"));
+    public Person savePerson(){
+        Person person = new Person("fengjie",18,"shandong");
+        personReposity.save(person);
+        return person;
     }
 }
