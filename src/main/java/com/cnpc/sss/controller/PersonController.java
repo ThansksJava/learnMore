@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class PersonController {
-    @Autowired
-    private Person person;
-    @RequestMapping("/showPerson")
-    public String showPerson(Model model){
-        model.addAttribute(person);
-        return "ShowPerson";
-    }
+//    @Autowired
+//    private Person person;
+//    @RequestMapping("/showPerson")
+//    public String showPerson(Model model){
+//        model.addAttribute(person);
+//        return "ShowPerson";
+//    }
 }

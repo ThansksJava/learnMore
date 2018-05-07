@@ -14,7 +14,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableJpaRepositories("com.cnpc.sss.dao")
+@EnableJpaRepositories(value = "com.cnpc.sss.dao",entityManagerFactoryRef="entityManagerFactory")
 public class JpaConfiguration {
     @Autowired
     JpaProperties jpaProperties;
@@ -25,6 +25,8 @@ public class JpaConfiguration {
         factoryBean.setDataSource(this.dataSource());
         factoryBean.setJpaVendorAdapter(vendorAdapter);
         factoryBean.setPackagesToScan("com.cnpc.sss.domain");
+        factoryBean.setJpaPropertyMap(jpaProperties.getProperties());
+        factoryBean.afterPropertiesSet();//在完成了其它所有相关的配置加载以及属性设置后,才初始化
         return factoryBean.getObject();
     }
     /**

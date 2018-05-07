@@ -8,6 +8,6 @@ import java.util.List;
 public interface PersonReposity extends JpaRepository<Person,Long> {
     List<Person> findByName(String name);
     List<Person> findByNameLike(String name);
-    List<Person> finByNameAndAddress(String name,String address);
+    List<Person> findByNameAndAddress(String name,String address);
     List<Person> findFirst10ByName(String name);
 }
