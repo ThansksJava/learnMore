@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @Author fengjie
  * @Description
@@ -22,5 +24,9 @@ public class JpaPersonController {
         Person person = new Person("fengjie",18,"shandong");
         personReposity.save(person);
         return person;
+    }
+    @RequestMapping("/getPersonByname")
+    public List<Person> getPersonByName(){
+        return personReposity.findByName("fengjie");
     }
 }
