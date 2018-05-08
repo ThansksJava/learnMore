@@ -7,11 +7,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 //@Component
 //@ConfigurationProperties(prefix = "person")
 @Entity
-public class Person {
+public class Person implements Serializable {
     private String id;
     private String name;
     private int age;
