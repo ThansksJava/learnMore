@@ -9,6 +9,16 @@ server:
 spring:
   profiles:
     active: dev
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    database: mysql
+    generate-ddl: true
+#     妈的竟然不管用，哪儿的问题呢,妈个鸡把entityManagerFactory的配置去了就好了！！！！
+    hibernate:
+      ddl-auto: update
+      naming:
+        strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    show-sql: true
   redis:
     host: 192.168.25.4
     port: 6379
@@ -32,16 +42,6 @@ spring:
     username: root
     password:
     driver-class-name: com.mysql.jdbc.Driver
-  jpa:
-    database-platform: org.hibernate.dialect.MySQL5Dialect
-    database: mysql
-    generate-ddl: true
-#     妈的竟然不管用，哪儿的问题呢
-    hibernate:
-      ddl-auto: create
-      naming:
-        strategy: org.hibernate.cfg.DefaultComponentSafeNamingStrategy
-    show-sql: true
 #person:
 #  name: someone
 #  age: 999
