@@ -23,6 +23,13 @@ spring:
     host: 192.168.25.4
     port: 6379
     timeout: 3000
+#thymeleaf配置
+  thymeleaf:
+    cache: false
+#日志配置
+logging:
+  level:
+    org.springframework.security: info
 ---
 spring:
   profiles: pro
