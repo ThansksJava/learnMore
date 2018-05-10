@@ -38,11 +38,11 @@ body {
 
 		<p class="bg-primary" th:text="${msg.content}"></p>
 		
-		<div sec:authorize="hasRole('ROLE_ADMIN')"> <!-- 3 -->
+		<div sec:authorize="hasRole('admin')"> <!-- 3 -->
 		 	<p class="bg-info" th:text="${msg.extraInfo}"></p>
 		</div>	
-		
-		<div sec:authorize="hasRole('ROLE_USER')"> <!-- 4-->
+		<!--TODO 此处不生效因为角色默认是以ROLE_开头的，如何修改？-->
+		<div sec:authorize="hasRole('user')"> <!-- 4-->
 		 	<p class="bg-info">无更多信息显示</p>
 		</div>	
 		
