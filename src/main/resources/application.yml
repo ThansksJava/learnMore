@@ -56,6 +56,12 @@ spring:
     username: root
     password:
     driver-class-name: com.mysql.jdbc.Driver
+  rabbitmq:
+    host: 11.11.176.209
+    port: 5672
+    username: fengjie
+    password: fengjie
+    virtual-host: fengjie
 #person:
 #  name: someone
 #  age: 999
