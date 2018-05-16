@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnpc.sss.mybatis.dao.ChorusMapper" >
+  <resultMap id="BaseResultMap" type="com.cnpc.sss.mybatis.model.Chorus" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="chrousName" property="chrousname" jdbcType="VARCHAR" />
+    <result column="memberNum" property="membernum" jdbcType="INTEGER" />
+    <result column="voicePartNum" property="voicepartnum" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, chrousName, memberNum, voicePartNum, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from chorus
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from chorus
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cnpc.sss.mybatis.model.Chorus" >
+    insert into chorus (ID, chrousName, memberNum, 
+      voicePartNum, status)
+    values (#{id,jdbcType=VARCHAR}, #{chrousname,jdbcType=VARCHAR}, #{membernum,jdbcType=INTEGER}, 
+      #{voicepartnum,jdbcType=INTEGER}, #{status,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnpc.sss.mybatis.model.Chorus" >
+    insert into chorus
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="chrousname != null" >
+        chrousName,
+      </if>
+      <if test="membernum != null" >
+        memberNum,
+      </if>
+      <if test="voicepartnum != null" >
+        voicePartNum,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="chrousname != null" >
+        #{chrousname,jdbcType=VARCHAR},
+      </if>
+      <if test="membernum != null" >
+        #{membernum,jdbcType=INTEGER},
+      </if>
+      <if test="voicepartnum != null" >
+        #{voicepartnum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnpc.sss.mybatis.model.Chorus" >
+    update chorus
+    <set >
+      <if test="chrousname != null" >
+        chrousName = #{chrousname,jdbcType=VARCHAR},
+      </if>
+      <if test="membernum != null" >
+        memberNum = #{membernum,jdbcType=INTEGER},
+      </if>
+      <if test="voicepartnum != null" >
+        voicePartNum = #{voicepartnum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnpc.sss.mybatis.model.Chorus" >
+    update chorus
+    set chrousName = #{chrousname,jdbcType=VARCHAR},
+      memberNum = #{membernum,jdbcType=INTEGER},
+      voicePartNum = #{voicepartnum,jdbcType=INTEGER},
+      status = #{status,jdbcType=CHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

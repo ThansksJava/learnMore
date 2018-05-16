@@ -37,6 +37,9 @@ logging:
 security:
   #如果配置了，就需要手动配置其他的拦截了，默认是拦截/css/**,/js/**,/images/**,/**/favicon.ico的
   ignored: /druid/**,/css/**,/js/**,/images/**,/**/favicon.ico
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.cnpc.sss.mybatis.model
 ---
 spring:
   profiles: pro
@@ -52,7 +55,7 @@ person:
 spring:
   profiles: dev
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/springboot
+    url: jdbc:mysql://127.0.0.1:3306/kaopudev
     username: root
     password:
     driver-class-name: com.mysql.jdbc.Driver

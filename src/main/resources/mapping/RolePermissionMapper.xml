@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnpc.sss.mybatis.dao.RolePermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.cnpc.sss.mybatis.model.RolePermission" >
+    <result column="roleid" property="roleid" jdbcType="VARCHAR" />
+    <result column="permissionid" property="permissionid" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.cnpc.sss.mybatis.model.RolePermission" >
+    insert into role_permission (roleid, permissionid)
+    values (#{roleid,jdbcType=VARCHAR}, #{permissionid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnpc.sss.mybatis.model.RolePermission" >
+    insert into role_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleid != null" >
+        roleid,
+      </if>
+      <if test="permissionid != null" >
+        permissionid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleid != null" >
+        #{roleid,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionid != null" >
+        #{permissionid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

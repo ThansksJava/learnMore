@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnpc.sss.mybatis.dao.RehearseMapper" >
+  <resultMap id="BaseResultMap" type="com.cnpc.sss.mybatis.model.Rehearse" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="chorus_id" property="chorusId" jdbcType="VARCHAR" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="director" property="director" jdbcType="VARCHAR" />
+    <result column="Pianist" property="pianist" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, chorus_id, location, time, director, Pianist
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from rehearse
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from rehearse
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cnpc.sss.mybatis.model.Rehearse" >
+    insert into rehearse (id, chorus_id, location, 
+      time, director, Pianist
+      )
+    values (#{id,jdbcType=VARCHAR}, #{chorusId,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{time,jdbcType=TIMESTAMP}, #{director,jdbcType=VARCHAR}, #{pianist,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnpc.sss.mybatis.model.Rehearse" >
+    insert into rehearse
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="chorusId != null" >
+        chorus_id,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="director != null" >
+        director,
+      </if>
+      <if test="pianist != null" >
+        Pianist,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="chorusId != null" >
+        #{chorusId,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="director != null" >
+        #{director,jdbcType=VARCHAR},
+      </if>
+      <if test="pianist != null" >
+        #{pianist,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnpc.sss.mybatis.model.Rehearse" >
+    update rehearse
+    <set >
+      <if test="chorusId != null" >
+        chorus_id = #{chorusId,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="director != null" >
+        director = #{director,jdbcType=VARCHAR},
+      </if>
+      <if test="pianist != null" >
+        Pianist = #{pianist,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnpc.sss.mybatis.model.Rehearse" >
+    update rehearse
+    set chorus_id = #{chorusId,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      director = #{director,jdbcType=VARCHAR},
+      Pianist = #{pianist,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
