@@ -2,6 +2,9 @@ package com.cnpc.sss.mybatis.model;
 
 import java.util.Date;
 
+/**
+ * 排练
+ */
 public class Rehearse {
     private String id;
 

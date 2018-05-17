@@ -2,7 +2,7 @@ package com.cnpc.sss.mybatis.dao;
 
 import com.cnpc.sss.mybatis.model.Role;
 
-public interface RoleMapper {
+public interface RoleDao {
     int deleteByPrimaryKey(String id);
 
     int insert(Role record);

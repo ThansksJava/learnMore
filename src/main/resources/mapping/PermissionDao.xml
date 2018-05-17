@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.cnpc.sss.mybatis.dao.RoleMapper" >
-  <resultMap id="BaseResultMap" type="com.cnpc.sss.mybatis.model.Role" >
+<mapper namespace="com.cnpc.sss.mybatis.dao.PermissionDao" >
+  <resultMap id="BaseResultMap" type="com.cnpc.sss.mybatis.model.Permission" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="code" property="code" jdbcType="VARCHAR" />
-    <result column="detail" property="detail" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="CHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, code, detail, status
+    id, name, code, note, status
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from role
+    from permission
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from role
+    delete from permission
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.cnpc.sss.mybatis.model.Role" >
-    insert into role (id, name, code, 
-      detail, status)
+  <insert id="insert" parameterType="com.cnpc.sss.mybatis.model.Permission" >
+    insert into permission (id, name, code, 
+      note, status)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
-      #{detail,jdbcType=VARCHAR}, #{status,jdbcType=CHAR})
+      #{note,jdbcType=VARCHAR}, #{status,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.cnpc.sss.mybatis.model.Role" >
-    insert into role
+  <insert id="insertSelective" parameterType="com.cnpc.sss.mybatis.model.Permission" >
+    insert into permission
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -39,8 +39,8 @@
       <if test="code != null" >
         code,
       </if>
-      <if test="detail != null" >
-        detail,
+      <if test="note != null" >
+        note,
       </if>
       <if test="status != null" >
         status,
@@ -56,16 +56,16 @@
       <if test="code != null" >
         #{code,jdbcType=VARCHAR},
       </if>
-      <if test="detail != null" >
-        #{detail,jdbcType=VARCHAR},
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         #{status,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cnpc.sss.mybatis.model.Role" >
-    update role
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnpc.sss.mybatis.model.Permission" >
+    update permission
     <set >
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
@@ -73,8 +73,8 @@
       <if test="code != null" >
         code = #{code,jdbcType=VARCHAR},
       </if>
-      <if test="detail != null" >
-        detail = #{detail,jdbcType=VARCHAR},
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         status = #{status,jdbcType=CHAR},
@@ -82,11 +82,11 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cnpc.sss.mybatis.model.Role" >
-    update role
+  <update id="updateByPrimaryKey" parameterType="com.cnpc.sss.mybatis.model.Permission" >
+    update permission
     set name = #{name,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},
-      detail = #{detail,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
       status = #{status,jdbcType=CHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>

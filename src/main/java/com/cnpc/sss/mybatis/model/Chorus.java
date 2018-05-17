@@ -1,5 +1,8 @@
 package com.cnpc.sss.mybatis.model;
 
+/**
+ * 合唱团
+ */
 public class Chorus {
     private String id;
 

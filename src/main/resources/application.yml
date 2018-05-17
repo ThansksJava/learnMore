@@ -36,10 +36,18 @@ logging:
 #spring security
 security:
   #如果配置了，就需要手动配置其他的拦截了，默认是拦截/css/**,/js/**,/images/**,/**/favicon.ico的
-  ignored: /druid/**,/css/**,/js/**,/images/**,/**/favicon.ico
-mybatis:
-  mapper-locations: classpath:mapping/*.xml
-  type-aliases-package: com.cnpc.sss.mybatis.model
+  ignored: /druid/**,/css/**,/js/**,/images/**,/**/favicon.ico,/showPerson,/chorus/**
+#在java类中配置SqlSessionFactory后这个就不管用了
+#mybatis:
+#  mapper-locations: classpath:mapping/*.xml
+#  type-aliases-package: com.cnpc.sss.mybatis.model
+#  config-location: classpath:mybatis-config.xml
+#pagehelper分页插件
+#pagehelper:
+#    helperDialect: mysql
+#    reasonable: true
+#    supportMethodsArguments: true
+#    params: count=countSql
 ---
 spring:
   profiles: pro
@@ -65,6 +73,6 @@ spring:
     username: fengjie
     password: fengjie
     virtual-host: fengjie
-#person:
-#  name: someone
-#  age: 999
+person:
+  name: someone
+  age: 999

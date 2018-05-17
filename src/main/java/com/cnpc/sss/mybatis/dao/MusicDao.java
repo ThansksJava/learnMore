@@ -2,7 +2,7 @@ package com.cnpc.sss.mybatis.dao;
 
 import com.cnpc.sss.mybatis.model.Music;
 
-public interface MusicMapper {
+public interface MusicDao {
     int deleteByPrimaryKey(String id);
 
     int insert(Music record);

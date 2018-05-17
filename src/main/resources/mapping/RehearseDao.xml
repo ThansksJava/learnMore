@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.cnpc.sss.mybatis.dao.RehearseMapper" >
+<mapper namespace="com.cnpc.sss.mybatis.dao.RehearseDao" >
   <resultMap id="BaseResultMap" type="com.cnpc.sss.mybatis.model.Rehearse" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="chorus_id" property="chorusId" jdbcType="VARCHAR" />

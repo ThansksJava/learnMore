@@ -2,7 +2,7 @@ package com.cnpc.sss.mybatis.dao;
 
 import com.cnpc.sss.mybatis.model.Notice;
 
-public interface NoticeMapper {
+public interface NoticeDao {
     int deleteByPrimaryKey(String id);
 
     int insert(Notice record);

@@ -5,8 +5,6 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.io.Serializable;
 
-//@Component
-//@ConfigurationProperties(prefix = "person")
 @Entity
 public class Person implements Serializable {
     private String id;

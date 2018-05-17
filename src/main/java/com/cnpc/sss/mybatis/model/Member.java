@@ -1,5 +1,8 @@
 package com.cnpc.sss.mybatis.model;
 
+/**
+ * 合唱团成员
+ */
 public class Member {
     private String id;
 

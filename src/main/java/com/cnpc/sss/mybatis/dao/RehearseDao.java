@@ -2,7 +2,7 @@ package com.cnpc.sss.mybatis.dao;
 
 import com.cnpc.sss.mybatis.model.Rehearse;
 
-public interface RehearseMapper {
+public interface RehearseDao {
     int deleteByPrimaryKey(String id);
 
     int insert(Rehearse record);

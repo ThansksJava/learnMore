@@ -2,7 +2,7 @@ package com.cnpc.sss.mybatis.dao;
 
 import com.cnpc.sss.mybatis.model.Permission;
 
-public interface PermissionMapper {
+public interface PermissionDao {
     int deleteByPrimaryKey(String id);
 
     int insert(Permission record);

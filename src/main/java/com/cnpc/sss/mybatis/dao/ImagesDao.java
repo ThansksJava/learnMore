@@ -2,7 +2,7 @@ package com.cnpc.sss.mybatis.dao;
 
 import com.cnpc.sss.mybatis.model.Images;
 
-public interface ImagesMapper {
+public interface ImagesDao {
     int deleteByPrimaryKey(String id);
 
     int insert(Images record);
