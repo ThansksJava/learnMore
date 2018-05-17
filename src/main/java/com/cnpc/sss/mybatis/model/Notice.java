@@ -1,8 +1,9 @@
 package com.cnpc.sss.mybatis.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Notice {
+public class Notice  implements Serializable {
     private String id;
 
     private String memberId;

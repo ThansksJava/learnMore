@@ -13,7 +13,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-@Configuration
+//@Configuration
 public class JpaConfiguration {
     /**
      * ConfigurationProperties(prefix = "spring.datasource")

@@ -1,11 +1,12 @@
 package com.cnpc.sss.mybatis.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 排练
  */
-public class Rehearse {
+public class Rehearse  implements Serializable {
     private String id;
 
     private String chorusId;

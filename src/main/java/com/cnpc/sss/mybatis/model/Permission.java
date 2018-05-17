@@ -1,6 +1,8 @@
 package com.cnpc.sss.mybatis.model;
 
-public class Permission {
+import java.io.Serializable;
+
+public class Permission  implements Serializable {
     private String id;
 
     private String name;

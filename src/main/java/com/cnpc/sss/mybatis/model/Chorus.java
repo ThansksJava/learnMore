@@ -1,9 +1,11 @@
 package com.cnpc.sss.mybatis.model;
 
+import java.io.Serializable;
+
 /**
  * 合唱团
  */
-public class Chorus {
+public class Chorus  implements Serializable {
     private String id;
 
     private String chrousname;

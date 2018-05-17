@@ -1,6 +1,8 @@
 package com.cnpc.sss.mybatis.model;
 
-public class Images {
+import java.io.Serializable;
+
+public class Images  implements Serializable {
     private String id;
 
     private String name;
