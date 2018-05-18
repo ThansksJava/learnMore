@@ -27,4 +27,10 @@ public class ChorusController {
         chorus.setVoicepartnum(4);
         return chorusService.addChorus(chorus)?"success":"failure";
     }
+
+    @RequestMapping("/showChorus")
+    public Chorus showChorus(){
+        String id= "qwertyuiopasdfghjklzxcvbnm1234";
+        return chorusService.showChorus(id);
+    }
 }

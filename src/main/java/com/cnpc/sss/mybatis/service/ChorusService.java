@@ -18,4 +18,7 @@ public class ChorusService {
     public boolean addChorus(Chorus chorus){
         return chorusDao.insert(chorus) > 0 ? true : false;
     }
+    public Chorus showChorus(String id){
+        return chorusDao.selectByPrimaryKey(id);
+    }
 }

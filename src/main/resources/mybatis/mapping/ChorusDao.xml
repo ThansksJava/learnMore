@@ -23,7 +23,7 @@
     delete from chorus
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.cnpc.sss.mybatis.model.Chorus" >
+  <insert id="insert" parameterType="com.cnpc.sss.mybatis.model.Chorus">
     insert into chorus (ID, chrousName, memberNum, 
       voicePartNum, status)
     values (#{id,jdbcType=VARCHAR}, #{chrousname,jdbcType=VARCHAR}, #{membernum,jdbcType=INTEGER}, 
