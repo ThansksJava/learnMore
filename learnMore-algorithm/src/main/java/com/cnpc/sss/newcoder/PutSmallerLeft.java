@@ -1,5 +1,7 @@
 package com.cnpc.sss.newcoder;
 
+import java.util.Arrays;
+
 /**
  * @Author fengjie
  * @Description
@@ -7,8 +9,17 @@ package com.cnpc.sss.newcoder;
  * @Time 17:41
  */
 public class PutSmallerLeft {
-    public static void putLeft(int [] array,int left,int right){
-
+    public static void putLeft(int [] array,int left,int right,int target){
+        if(right - left + 1 > array.length){
+            return;
+        }
+        int less = left - 1;
+        for(int start = left; start < right - left + 1;start++){
+            if(array[start] < target){
+                swap(array,start,++less);
+            }
+        }
+        System.out.println(Arrays.toString(array));
     }
     public static void swap(int [] array,int i,int j){
         array[i] = array[i] + array[j];
@@ -17,6 +28,7 @@ public class PutSmallerLeft {
 
     }
     public static void main(String[] args) {
-
+        int [] array = {6,4,5,2,1};
+        putLeft(array,0,4,5);
     }
 }
