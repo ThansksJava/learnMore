@@ -15,8 +15,8 @@ public class PutSmallerLeft {
         }
         int less = left - 1;
         for(int start = left; start < right - left + 1;start++){
-            if(array[start] < target){
-                swap(array,start,++less);
+            if(array[start] <= target){
+                swap(array,++less,start);
             }
         }
         System.out.println(Arrays.toString(array));
@@ -25,7 +25,6 @@ public class PutSmallerLeft {
         array[i] = array[i] + array[j];
         array[j] = array[i] - array[j];
         array[i] = array[i] - array[j];
-
     }
     public static void main(String[] args) {
         int [] array = {6,4,5,2,1};
