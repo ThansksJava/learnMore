@@ -46,17 +46,12 @@ public class HeapSort {
         int lc = index * 2 + 1;
         while(lc < heapSize){
             int rc = lc + 1;
-            /*右孩子的大小不能越界，挑选出两个子节点中较大子节点的下标*/
-            int largeIndex = rc < heapSize && array[lc] > array[rc]?lc:rc;
-            /*比较大小,只有子节点存在 大于 当前节点的值，才进行交换否则直接进入下一轮*/
-/*            if(array[largeIndex] > array[index]){
-                SortUtils.swap(array,index,largeIndex);
-                index = largeIndex;
-                lc = index * 2 + 1;
-            }else {
-                lc = index * 2 + 1;
-                break;
-            }*/
+            /*右孩子的大小不能越界，挑选出两个子节点中较大子节点的下标 TODO 非常之坑的一个地方*/
+//            如果这样写就必须先判断右节点下标是否越界才行，不然有可能会把越界的右节点下标赋给largestIndex，然后后面交换就会出错
+//            int largeIndex = rc < heapSize && array[lc] > array[rc]?lc:rc;
+
+            int largeIndex = rc < heapSize && array[rc] > array[lc]?rc:lc;
+
             /*如果子节点不大于当前节点，那么较大值的节点应该改为当前节点*/
             largeIndex = array[largeIndex] > array[index] ? largeIndex:index;
             /*相等直接就结束循环，heapify过程结束*/
@@ -64,7 +59,23 @@ public class HeapSort {
                 break;
             }
             SortUtils.swap(array,index,largeIndex);
-            lc = largeIndex * 2 + 1;
+            index = largeIndex;
+            lc = index * 2 + 1;
         }
+    }
+
+    public static void main(String[] args) {
+        boolean flag = true;
+        for(int i = 0; i < 100;i++){
+            int [] array = SortUtils.generateRandomArray(10,10);
+            int [] copyArray = SortUtils.copyArray(array);
+            SortUtils.comparator(copyArray);
+            heapSort(array);
+            if(!SortUtils.isEqual(array,copyArray)){
+                flag = false;
+                break;
+            }
+        }
+        System.out.println(flag?"succcess":"fuck wrong");
     }
 }
