@@ -69,4 +69,8 @@ public class SortUtils {
         }
         System.out.println();
     }
+    public static void main(String[] args) {
+        String x = "1";
+        x.split(",");
+    }
 }
