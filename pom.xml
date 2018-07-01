@@ -10,6 +10,7 @@
     <modules>
         <module>learnMore-springboot</module>
         <module>learnMore-algorithm</module>
+        <module>learnMore-cache</module>
     </modules>
    <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
