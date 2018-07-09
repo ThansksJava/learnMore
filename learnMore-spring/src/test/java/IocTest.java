@@ -1,4 +1,6 @@
 import com.cnpc.ioc.BeanDefinition;
+import com.cnpc.ioc.PropertyValue;
+import com.cnpc.ioc.PropertyValues;
 import com.cnpc.ioc.factory.AutowireCapableBeanFactory;
 import com.cnpc.ioc.factory.BeanFactory;
 import org.junit.Test;
@@ -21,6 +23,28 @@ public class IocTest {
         beanFactory.registerBeanDefinition("helloWorldService", beanDefinition);
 
         // 3.获取bean
+        HelloWorldService helloWorldService = (HelloWorldService) beanFactory.getBean("helloWorldService");
+        helloWorldService.helloWorld();
+    }
+
+    @Test
+    public void testProperty(){
+        // 1.初始化beanfactory
+        BeanFactory beanFactory = new AutowireCapableBeanFactory();
+
+        // 2.bean定义
+        BeanDefinition beanDefinition = new BeanDefinition();
+        beanDefinition.setBeanClassName("HelloWorldService");
+
+        // 3.设置属性
+        PropertyValues propertyValues = new PropertyValues();
+        propertyValues.addPropertyValue(new PropertyValue("text", "Hello World!"));
+        beanDefinition.setPropertyValues(propertyValues);
+
+        // 4.生成bean
+        beanFactory.registerBeanDefinition("helloWorldService", beanDefinition);
+
+        // 5.获取bean
         HelloWorldService helloWorldService = (HelloWorldService) beanFactory.getBean("helloWorldService");
         helloWorldService.helloWorld();
     }
