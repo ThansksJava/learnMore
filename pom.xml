@@ -12,6 +12,7 @@
         <module>learnMore-algorithm</module>
         <module>learnMore-cache</module>
         <module>learnMore-spring</module>
+        <module>learnMore-jvm</module>
     </modules>
    <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
