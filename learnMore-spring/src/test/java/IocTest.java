@@ -16,7 +16,6 @@ public class IocTest {
     public void test(){
         // 1.初始化beanfactory
         BeanFactory beanFactory = new AutowireCapableBeanFactory();
-
         // 2.注入bean
         BeanDefinition beanDefinition = new BeanDefinition();
         beanDefinition.setBeanClassName("HelloWorldService");
