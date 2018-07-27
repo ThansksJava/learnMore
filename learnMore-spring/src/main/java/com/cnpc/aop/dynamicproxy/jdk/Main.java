@@ -1,4 +1,4 @@
-package com.cnpc.proxy;
+package com.cnpc.aop.dynamicproxy.jdk;
 
 import org.junit.Test;
 
@@ -15,6 +15,7 @@ public class Main {
     public void proxyTest(){
         Impl impl = new Impl();
         Interface  anInterface= (Interface) Proxy.newProxyInstance(Interface.class.getClassLoader(),new Class[]{Interface.class},new DynamicProxy(impl));
+
         anInterface.doSomething("吃饭");
     }
 }

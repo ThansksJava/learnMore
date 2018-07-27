@@ -1,4 +1,4 @@
-package com.cnpc.proxy;
+package com.cnpc.aop.dynamicproxy.jdk;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -20,9 +20,7 @@ public class DynamicProxy implements InvocationHandler {
     }
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-//        System.out.println("proxy="+proxy+",method="+method+",args="+Arrays.toString(args));
-        System.out.println("args="+Arrays.toString(args));
-        System.out.println("proxy="+proxy);
+        System.out.println("proxy="+proxy.getClass()+",method="+method.getName()+",args="+Arrays.toString(args));
         System.out.println("=========》被代理类方法执行前执行内容《==========");
         Object result = method.invoke(proxied,args);
         System.out.println("=========》被代理类方法执行后执行内容《==========");

@@ -1,4 +1,4 @@
-package com.cnpc.proxy;
+package com.cnpc.aop.dynamicproxy.jdk;
 
 /**
  * @Author fengjie

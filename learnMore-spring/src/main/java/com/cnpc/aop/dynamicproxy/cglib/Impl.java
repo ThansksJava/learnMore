@@ -1,4 +1,6 @@
-package com.cnpc.proxy;
+package com.cnpc.aop.dynamicproxy.cglib;
+
+import com.cnpc.aop.dynamicproxy.jdk.Interface;
 
 /**
  * @Author fengjie
