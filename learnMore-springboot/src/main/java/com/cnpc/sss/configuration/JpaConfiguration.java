@@ -15,6 +15,13 @@ import javax.sql.DataSource;
 
 //@Configuration
 public class JpaConfiguration {
+//    @Bean
+//    public LocalContainerEntityManagerFactoryBean  entityManagerFactory(){
+//        LocalContainerEntityManagerFactoryBean em = new
+//                LocalContainerEntityManagerFactoryBean();
+//        em.
+//        return null;
+//    }
     /**
      * ConfigurationProperties(prefix = "spring.datasource")
      * 自动对DruidDataSource中的属性进行配置
@@ -26,4 +33,6 @@ public class JpaConfiguration {
         DruidDataSource druidDataSource = new DruidDataSource();
         return druidDataSource;
     }
+
+
 }

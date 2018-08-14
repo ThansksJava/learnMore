@@ -13,7 +13,7 @@ import org.springframework.cache.annotation.EnableCaching;
  */
 @SpringBootApplication
 @EnableCaching
-@MapperScan("com.cnpc.sss.mybatis.dao")
+//@MapperScan("com.cnpc.sss.mybatis.dao")
 public class Application extends SpringBootServletInitializer {
 
     @Override

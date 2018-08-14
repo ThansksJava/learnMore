@@ -1,6 +1,6 @@
 package com.cnpc.sss.configuration.cache;
 
-import com.cnpc.sss.mybatis.configuration.RedisCache;
+//import com.cnpc.sss.mybatis.configuration.RedisCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
@@ -32,8 +32,8 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
             return sb.toString();
         };
     }
-    @Autowired
-    public void setRedisTemplate(RedisTemplate redisTemplate){
-        RedisCache.setRedisTemplate(redisTemplate);
-    }
+//    @Autowired
+//    public void setRedisTemplate(RedisTemplate redisTemplate){
+//        RedisCache.setRedisTemplate(redisTemplate);
+//    }
 }

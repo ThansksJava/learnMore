@@ -1,11 +1,11 @@
 server:
-  port: 8089
+  port: 8888
   context-path: /learnMore
 #  ssl:
 #    key-store: .keystore
 #    key-store-password: 123456
 #    key-store-type: JKS
-#    key-alias: ssldemo
+#    key-alias: tomcat1
 spring:
   profiles:
     active: dev
@@ -64,7 +64,7 @@ person:
 spring:
   profiles: dev
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/kaopudev
+    url: jdbc:mysql://127.0.0.1:3306/kaopu
     username: root
     password:
     driver-class-name: com.mysql.jdbc.Driver
