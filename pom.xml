@@ -13,6 +13,7 @@
         <module>learnMore-cache</module>
         <module>learnMore-spring</module>
         <module>learnMore-jvm</module>
+        <module>learnMore-influxDB</module>
     </modules>
    <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
