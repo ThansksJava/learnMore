@@ -7,4 +7,5 @@ package com.cnpc.dao;
  * @Time 11:47
  */
 public interface DataDao {
+    public void addCpu();
 }
