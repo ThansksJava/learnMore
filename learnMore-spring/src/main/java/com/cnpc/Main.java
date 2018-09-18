@@ -26,7 +26,10 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        new Main().renameFile("D:/file2.txt", "D:/file2.txt");
-        
+//        new Main().renameFile("D:/file2.txt", "D:/file2.txt");
+        String sq = null;
+        sq= sq+",";
+        sq.split(",");
+
     }
 }
