@@ -7,6 +7,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.lang.reflect.Field;
 import java.util.*;
 
@@ -55,15 +56,20 @@ public class Demo1 {
         }
         return list;
     }
-
     public static void main(String[] args)throws Exception {
         List<String> title = getTitles();
         List<String> code = getCode();
+        File file = new File("title.txt");
+        FileOutputStream out = new FileOutputStream(file);
         for(int i = 0;i < title.size();i++){
-            Map<String,String> map = new HashMap<>();
-            map.put("code",code.get(i));
-            map.put("displayText",title.get(i));
-            System.out.println(map);
+            StringBuilder sql = new StringBuilder();
+            String codeS = code.get(i);
+            sql.append("Map<String,String> "+codeS +" = new HashMap<>();\n");
+            sql.append(codeS+".put(\"code\",\""+codeS+"\");\n");
+            sql.append(codeS+".put(\"displayText\",\""+title.get(i)+"\");\n");
+            sql.append(codeS+".put(\"filter\",\"input\")\n");
+            out.write(sql.toString().getBytes());
         }
+        out.close();
     }
 }
