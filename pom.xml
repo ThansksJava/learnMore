@@ -14,6 +14,7 @@
         <module>learnMore-spring</module>
         <module>learnMore-jvm</module>
         <module>learnMore-influxDB</module>
+        <module>learnMore-designpatterns</module>
     </modules>
    <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
