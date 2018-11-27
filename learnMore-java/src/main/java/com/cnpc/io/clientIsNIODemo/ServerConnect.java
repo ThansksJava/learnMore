@@ -57,15 +57,15 @@ public class ServerConnect
 
     public static void selector() {
         Selector selector = null;
-        ServerSocketChannel ssc = null;
+        ServerSocketChannel serverSocketChannel = null;
         try{
             //创建Selector
             selector = Selector.open();
-            ssc= ServerSocketChannel.open();
-            ssc.socket().bind(new InetSocketAddress(PORT));
+            serverSocketChannel= ServerSocketChannel.open();
+            serverSocketChannel.socket().bind(new InetSocketAddress(PORT));
             //与Selector一起使用时，Channel必须处于非阻塞模式下
-            ssc.configureBlocking(false);
-            ssc.register(selector, SelectionKey.OP_ACCEPT);
+            serverSocketChannel.configureBlocking(false);
+            serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
 
             while(true){
                 if(selector.select(TIMEOUT) == 0){
@@ -98,8 +98,8 @@ public class ServerConnect
                 if(selector!=null){
                     selector.close();
                 }
-                if(ssc!=null){
-                    ssc.close();
+                if(serverSocketChannel!=null){
+                    serverSocketChannel.close();
                 }
             }catch(IOException e){
                 e.printStackTrace();

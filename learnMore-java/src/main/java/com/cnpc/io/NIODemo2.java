@@ -47,8 +47,10 @@ public class NIODemo2 {
      */
     public static void NIOMethod(){
         RandomAccessFile aFile = null;
+        RandomAccessFile bFile = null;
         try{
-            aFile = new RandomAccessFile("D:/学习.txt","rw");
+            aFile = new RandomAccessFile("D:/cpu_v2.csv","rw");
+            bFile = new RandomAccessFile("D:/cpu_v2.txt","rw");
             FileChannel fileChannel = aFile.getChannel();
             ByteBuffer buf = ByteBuffer.allocate(1024);
 
@@ -60,15 +62,16 @@ public class NIODemo2 {
                 buf.flip();
                 while(buf.hasRemaining())
                 {
-                    System.out.print((char)buf.get());
+                    char c = (char)buf.get();
+                    System.out.print(c);
+                    bFile.write(c);
                 }
                 //将Buffer中的未读数据放入其实位置position设到最后一个未读元素后面
                 buf.compact();
                 bytesRead = fileChannel.read(buf);
             }
             //position位置重新置为0，可以重读
-            buf.rewind();
-
+//            buf.rewind();
         }catch (IOException e){
             e.printStackTrace();
         }finally{
@@ -76,14 +79,20 @@ public class NIODemo2 {
                 if(aFile != null){
                     aFile.close();
                 }
+                if(bFile != null){
+                    bFile.close();
+                }
             }catch (IOException e){
                 e.printStackTrace();
             }
         }
     }
-
+    public static void  doOthers(){
+        System.out.println("我在做其他的事情。。。。。。");
+    }
     public static void main(String[] args) {
 //        IOMethod();
         NIOMethod();
+        doOthers();
     }
 }
