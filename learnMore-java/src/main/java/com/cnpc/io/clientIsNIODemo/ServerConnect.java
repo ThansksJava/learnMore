@@ -66,8 +66,9 @@ public class ServerConnect
             //与Selector一起使用时，Channel必须处于非阻塞模式下
             serverSocketChannel.configureBlocking(false);
             serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
-
+            int outWhileCycleCount = 0;
             while(true){
+                System.out.println("外层while："+(++outWhileCycleCount));
                 if(selector.select(TIMEOUT) == 0){
                     System.out.println("==");
                     continue;

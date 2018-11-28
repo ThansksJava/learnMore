@@ -84,6 +84,21 @@ public class NIOMyDemo {
         toFile.close();
     }
 
+    /**
+     * 1、创建Selector
+     * 2、向Selector注册通道
+     *   2.1 创建Channel
+     *   2.2 绑定端口
+     *   2.3 设置阻塞与否
+     *   2.4 注册，设置对什么连接通道感兴趣，第一次必须是OP_ACCEPT
+     *   2.5 注册同时附加对象 可选（与第三步二选一进行设置即可）
+     * 3、通过第二步返回值SelectionKey附加对象 可选
+     * 4、访问就绪通道
+     *   4.1 SocketChannel第一连接一定是 Accept 所以会进入accept分支
+     *   4.2 可以在accept中进行读数据、或者像ServerConnect中那样通过SelectionKey得到Selector和Channel，将 SelectionKey.OP_READ
+     *       注册进去，下一次循环就进入了read分支
+     * @throws Exception
+     */
     public static void  ioSelectorMethod() throws Exception{
         ByteBuffer readbuffer = ByteBuffer.allocate(1024);
         //1、创建Selector
@@ -112,12 +127,6 @@ public class NIOMyDemo {
                 SelectionKey sk = it.next();
                 if(sk.isAcceptable()) {
                     System.out.println("建立连接。。。。。。。。。。。。");
-                }
-                if (sk.isConnectable()) {
-                    // a connection was established with a remote server.
-                }
-                if (sk.isReadable()) {
-                    // a connection was accepted by a ServerSocketChannel.
                     ByteBuffer buffer = (ByteBuffer)sk.attachment();
                     ServerSocketChannel serverSocketChannel1 = (ServerSocketChannel)sk.channel();
                     SocketChannel socketChannel = serverSocketChannel1.accept();
@@ -130,6 +139,13 @@ public class NIOMyDemo {
                         buffer.clear();
                         bufferc = socketChannel.read(buffer);
                     }
+                }
+                if (sk.isConnectable()) {
+                    // a connection was established with a remote server.
+                }
+                if (sk.isReadable()) {
+                    // a connection was accepted by a ServerSocketChannel.
+
                 }
                 if (sk.isWritable()) {
                     // a channel is ready for writing
