@@ -20,32 +20,39 @@ public class ServerConnect
         selector();
     }
 
-    public static void handleAccept(SelectionKey key) throws IOException {
+    private static void handleAccept(SelectionKey key) throws IOException {
         ServerSocketChannel ssChannel = (ServerSocketChannel)key.channel();
         SocketChannel sc = ssChannel.accept();
         sc.configureBlocking(false);
         sc.register(key.selector(), SelectionKey.OP_READ,ByteBuffer.allocateDirect(BUF_SIZE));
     }
 
-    public static void handleRead(SelectionKey key) throws IOException{
+    private static void handleRead(SelectionKey key){
+        System.out.println("selectionkeyA是否有效？"+key.isValid());
         SocketChannel sc = (SocketChannel)key.channel();
         ByteBuffer buf = (ByteBuffer)key.attachment();
-        long bytesRead = sc.read(buf);
-        while(bytesRead>0){
-            buf.flip();
-            while(buf.hasRemaining()){
-                System.out.print((char)buf.get());
-            }
-            System.out.println();
-            buf.clear();
+        long bytesRead = 0;
+        try {
             bytesRead = sc.read(buf);
-        }
-        if(bytesRead == -1){
-            sc.close();
+            while(bytesRead>0){
+                buf.flip();
+                while(buf.hasRemaining()){
+                    System.out.print((char)buf.get());
+                }
+                System.out.println();
+                buf.clear();
+                bytesRead = sc.read(buf);
+                if(bytesRead == -1){
+                    sc.close();
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("一个连接关闭了。。。");
+//            key.cancel();
         }
     }
 
-    public static void handleWrite(SelectionKey key) throws IOException{
+    private static void handleWrite(SelectionKey key) throws IOException{
         ByteBuffer buf = (ByteBuffer)key.attachment();
         buf.flip();
         SocketChannel sc = (SocketChannel) key.channel();
@@ -55,7 +62,7 @@ public class ServerConnect
         buf.compact();
     }
 
-    public static void selector() {
+    private static void selector() {
         Selector selector = null;
         ServerSocketChannel serverSocketChannel = null;
         try{
@@ -76,16 +83,17 @@ public class ServerConnect
                 Iterator<SelectionKey> iter = selector.selectedKeys().iterator();
                 while(iter.hasNext()){
                     SelectionKey key = iter.next();
+                    System.out.println("key.ready:"+key.readyOps());
                     if(key.isAcceptable()){
                         handleAccept(key);
                     }
-                    if(key.isReadable()){
+                    else if(key.isReadable()){
                         handleRead(key);
                     }
-                    if(key.isWritable() && key.isValid()){
+                    else if(key.isWritable() && key.isValid()){
                         handleWrite(key);
-                    }
-                    if(key.isConnectable()){
+                     }
+                    else if(key.isConnectable()){
                         System.out.println("isConnectable = true");
                     }
                     iter.remove();
