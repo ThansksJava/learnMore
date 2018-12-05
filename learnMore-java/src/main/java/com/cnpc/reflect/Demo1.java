@@ -21,10 +21,13 @@ public class Demo1 {
     public static List<String> getCode() throws Exception{
         List<String> list = new ArrayList<>();
         ServerDevice serverDevice = new ServerDevice();
+        serverDevice.setCpu("1");
         Field [] fields = serverDevice.getClass().getDeclaredFields();
         for (Field field : fields){
             field.setAccessible(true);
-            list.add(field.getName());
+//            list.add(field.getName());
+            System.out.println(field.getName());
+            System.out.println(field.get(serverDevice));
         }
         return list;
     }
@@ -57,19 +60,19 @@ public class Demo1 {
         return list;
     }
     public static void main(String[] args)throws Exception {
-        List<String> title = getTitles();
+//        List<String> title = getTitles();
         List<String> code = getCode();
-        File file = new File("title.txt");
-        FileOutputStream out = new FileOutputStream(file);
-        for(int i = 0;i < title.size();i++){
-            StringBuilder sql = new StringBuilder();
-            String codeS = code.get(i);
-            sql.append("Map<String,String> "+codeS +" = new HashMap<>();\n");
-            sql.append(codeS+".put(\"code\",\""+codeS+"\");\n");
-            sql.append(codeS+".put(\"displayText\",\""+title.get(i)+"\");\n");
-            sql.append(codeS+".put(\"filter\",\"input\")\n");
-            out.write(sql.toString().getBytes());
-        }
-        out.close();
+//        File file = new File("title.txt");
+//        FileOutputStream out = new FileOutputStream(file);
+//        for(int i = 0;i < title.size();i++){
+//            StringBuilder sql = new StringBuilder();
+//            String codeS = code.get(i);
+//            sql.append("Map<String,String> "+codeS +" = new HashMap<>();\n");
+//            sql.append(codeS+".put(\"code\",\""+codeS+"\");\n");
+//            sql.append(codeS+".put(\"displayText\",\""+title.get(i)+"\");\n");
+//            sql.append(codeS+".put(\"filter\",\"input\")\n");
+//            out.write(sql.toString().getBytes());
+//        }
+//        out.close();
     }
 }
