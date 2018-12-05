@@ -7,6 +7,7 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.util.AttributeKey;
 
 import java.net.InetSocketAddress;
 
@@ -24,6 +25,7 @@ public class EchoClient {
         this.port = port;
     }
     public void start() throws Exception{
+        final AttributeKey<Integer> id = new AttributeKey<Integer>("ID");
         EventLoopGroup loopGroup = new NioEventLoopGroup();
         Bootstrap b = new Bootstrap();
         b.group(loopGroup)
@@ -35,6 +37,7 @@ public class EchoClient {
                         socketChannel.pipeline().addLast(new EchoClientHandler());
                     }
           });
+        b.attr(id,123456);
         ChannelFuture f = b.connect().sync();
         f.channel().closeFuture().sync();
         loopGroup.shutdownGracefully().sync();

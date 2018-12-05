@@ -7,6 +7,7 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.util.concurrent.Future;
 
 import java.net.InetSocketAddress;
 
@@ -43,6 +44,8 @@ public class EchoServer {
                 " started and listening for connections on " + f.channel().localAddress());
         f.channel().closeFuture().sync();
         group.shutdownGracefully().sync();
+//        Future future = group.shutdownGracefully();
+//        future.syncUninterruptibly();
     }
 
     public static void main(String[] args) {
