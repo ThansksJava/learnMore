@@ -19,6 +19,12 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
         ctx.writeAndFlush(Unpooled.copiedBuffer("Netty rocks!",CharsetUtil.UTF_8));
     }
 
+    /**
+     * SimpleChannelInboundHandler channelRead0可以实现自动释放消息
+     * @param channelHandlerContext
+     * @param byteBuf
+     * @throws Exception
+     */
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf) throws Exception {
         System.out.println("Client received:"+byteBuf.toString(CharsetUtil.UTF_8));

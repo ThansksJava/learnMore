@@ -7,6 +7,10 @@ import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
+import io.netty.util.ReferenceCountUtil;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author fengjie
@@ -20,6 +24,8 @@ public class EchoServerHandler  extends ChannelInboundHandlerAdapter {
         ByteBuf in = (ByteBuf)msg;
         System.out.println("Server received:"+in.toString(CharsetUtil.UTF_8));
         ctx.write(in);
+        //释放消息 未测试
+        ReferenceCountUtil.release(in);
     }
 
     @Override

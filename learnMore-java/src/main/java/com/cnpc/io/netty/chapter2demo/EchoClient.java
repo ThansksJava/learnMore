@@ -27,14 +27,14 @@ public class EchoClient {
         EventLoopGroup loopGroup = new NioEventLoopGroup();
         Bootstrap b = new Bootstrap();
         b.group(loopGroup)
-                .channel(NioSocketChannel.class)
-                .remoteAddress(new InetSocketAddress(host,port))
-                .handler(new ChannelInitializer<SocketChannel>() {
+         .channel(NioSocketChannel.class)
+         .remoteAddress(new InetSocketAddress(host,port))
+         .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel socketChannel) throws Exception {
                         socketChannel.pipeline().addLast(new EchoClientHandler());
                     }
-                });
+          });
         ChannelFuture f = b.connect().sync();
         f.channel().closeFuture().sync();
         loopGroup.shutdownGracefully().sync();
