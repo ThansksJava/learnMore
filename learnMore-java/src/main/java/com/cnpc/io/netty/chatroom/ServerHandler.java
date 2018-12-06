@@ -22,6 +22,7 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("Channel 处于活动状态（已经连接到它的远程节点）。它现在可以接收和发送数据了");
+        ctx.channel().remoteAddress();
     }
 
     @Override
