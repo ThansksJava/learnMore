@@ -1,12 +1,12 @@
 package com.cnpc.io.netty.chapter2demo;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.EventLoopGroup;
+import io.netty.buffer.Unpooled;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.util.CharsetUtil;
 
 import java.net.InetSocketAddress;
 
@@ -19,14 +19,13 @@ import java.net.InetSocketAddress;
  * @version 1.0
  * @date Created in 2018/11/30 9:28
  */
-public class EchoServer {
+public class ThirdEchoServer {
     private final int port;
 
-    public EchoServer(int port) {
+    public ThirdEchoServer(int port) {
         this.port = port;
     }
     public void start() throws Exception{
-        final EchoServerHandler serverHandler = new EchoServerHandler();
         EventLoopGroup group = new NioEventLoopGroup();
         ServerBootstrap bootstrap = new ServerBootstrap();
         bootstrap.group(group)
@@ -35,18 +34,27 @@ public class EchoServer {
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel socketChannel) throws Exception {
-                        socketChannel.pipeline().addLast(serverHandler);
+                        socketChannel.pipeline().addLast(new ChannelInboundHandlerAdapter(){
+                            @Override
+                            public void channelActive(ChannelHandlerContext ctx) throws Exception {
+                                ctx.channel().writeAndFlush(Unpooled.copiedBuffer("woshimi", CharsetUtil.UTF_8));
+                            }
+                        });
+                    }
+                    @Override
+                    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+                        System.out.println(ctx.channel().remoteAddress()+"连入");
                     }
                 });
         ChannelFuture f = bootstrap.bind().sync();
-        System.out.println(EchoServer.class.getName() +
+        System.out.println(ThirdEchoServer.class.getName() +
                 " started and listening for connections on " + f.channel().localAddress());
         f.channel().closeFuture().sync();
         group.shutdownGracefully().sync();
     }
     public static void main(String[] args) {
         try {
-            new EchoServer(8088).start();
+            new ThirdEchoServer(8089).start();
         } catch (Exception e) {
             e.printStackTrace();
         }

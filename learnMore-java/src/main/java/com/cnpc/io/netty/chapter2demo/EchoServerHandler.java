@@ -1,13 +1,11 @@
 package com.cnpc.io.netty.chapter2demo;
 
+import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelFutureListener;
-import io.netty.channel.ChannelHandler;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.*;
+import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.CharsetUtil;
-import io.netty.util.ReferenceCountUtil;
 
 /**
  * @author fengjie
@@ -20,9 +18,30 @@ public class EchoServerHandler  extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         ByteBuf in = (ByteBuf)msg;
         System.out.println("Server received:"+in.toString(CharsetUtil.UTF_8));
-        ctx.write(in);
-        //释放消息 未测试
-        ReferenceCountUtil.release(in);
+        final ByteBuf[] thirdMsg = new ByteBuf[1];
+        //充当客户端请求第三方
+        Bootstrap bootstrap = new Bootstrap();
+        bootstrap.group(ctx.channel().eventLoop())
+                .channel(NioSocketChannel.class)
+                .handler(new SimpleChannelInboundHandler<ByteBuf>() {
+                    @Override
+                    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+                        System.out.println("成功连接第三方服务器。。。");
+                    }
+
+                    @Override
+                    protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) throws Exception {
+                        System.out.println("接收到第三方服务器消息。。。");
+                        System.out.println(msg.toString(CharsetUtil.UTF_8));
+                        thirdMsg[0] = msg;
+                    }
+                });
+        try {
+            bootstrap.connect("127.0.0.1",8089).sync();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        ctx.write(thirdMsg[0]);
     }
 
     @Override
