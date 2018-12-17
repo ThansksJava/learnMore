@@ -7,6 +7,8 @@ import io.netty.channel.*;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.CharsetUtil;
 
+import java.net.InetSocketAddress;
+
 /**
  * @author fengjie
  * @version 1.0
@@ -21,8 +23,9 @@ public class EchoServerHandler  extends ChannelInboundHandlerAdapter {
         final ByteBuf[] thirdMsg = new ByteBuf[1];
         //充当客户端请求第三方
         Bootstrap bootstrap = new Bootstrap();
-        bootstrap.group(ctx.channel().eventLoop())
-                .channel(NioSocketChannel.class)
+        bootstrap.group(ctx.channel().eventLoop());
+        bootstrap.channel(NioSocketChannel.class)
+                .remoteAddress(new InetSocketAddress("127.0.0.1",8089))
                 .handler(new SimpleChannelInboundHandler<ByteBuf>() {
                     @Override
                     public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -36,14 +39,17 @@ public class EchoServerHandler  extends ChannelInboundHandlerAdapter {
                         thirdMsg[0] = msg;
                     }
                 });
-        try {
-            bootstrap.connect("127.0.0.1",8089).sync();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        ctx.write(thirdMsg[0]);
-    }
+        ChannelFuture future = bootstrap.connect();
+        future.addListener((ChannelFutureListener) channelFuture -> {
+            if (channelFuture.isSuccess()) {
+               ctx.writeAndFlush(thirdMsg[0]);
 
+            } else {
+                System.err.println("Bind attempt failed");
+                channelFuture.cause().printStackTrace();
+            }
+        });
+    }
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
         //将未决消息冲刷到远程节点，并且关闭该 Channel

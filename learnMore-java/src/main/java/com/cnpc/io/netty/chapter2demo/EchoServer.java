@@ -41,8 +41,9 @@ public class EchoServer {
         ChannelFuture f = bootstrap.bind().sync();
         System.out.println(EchoServer.class.getName() +
                 " started and listening for connections on " + f.channel().localAddress());
-        f.channel().closeFuture().sync();
-        group.shutdownGracefully().sync();
+//
+//        f.channel().closeFuture().sync();
+//        group.shutdownGracefully().sync();
     }
     public static void main(String[] args) {
         try {
