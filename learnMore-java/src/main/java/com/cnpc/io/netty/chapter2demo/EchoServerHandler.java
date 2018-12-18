@@ -20,7 +20,7 @@ public class EchoServerHandler  extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         ByteBuf in = (ByteBuf)msg;
         System.out.println("Server received:"+in.toString(CharsetUtil.UTF_8));
-        final ByteBuf[] thirdMsg = new ByteBuf[1];
+//        final ByteBuf[] thirdMsg = new ByteBuf[1];
         //充当客户端请求第三方
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.group(ctx.channel().eventLoop());
@@ -33,22 +33,32 @@ public class EchoServerHandler  extends ChannelInboundHandlerAdapter {
                     }
 
                     @Override
-                    protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) throws Exception {
+                    protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg1) throws Exception {
                         System.out.println("接收到第三方服务器消息。。。");
-                        System.out.println(msg.toString(CharsetUtil.UTF_8));
-                        thirdMsg[0] = msg;
+                        System.out.println(msg1.toString(CharsetUtil.UTF_8));
+//                        thirdMsg[0] = msg1;
+//                        ctx.writeAndFlush(thirdMsg[0]);
+                        ctx.writeAndFlush(msg1);
+                        System.out.println("发送到客户端完成");
                     }
                 });
         ChannelFuture future = bootstrap.connect();
-        future.addListener((ChannelFutureListener) channelFuture -> {
-            if (channelFuture.isSuccess()) {
-               ctx.writeAndFlush(thirdMsg[0]);
-
-            } else {
-                System.err.println("Bind attempt failed");
-                channelFuture.cause().printStackTrace();
-            }
-        });
+//        future.addListener(new ChannelFutureListener() {
+//            @Override
+//            public void operationComplete(ChannelFuture future) {
+//                if (future.isSuccess()) {
+//                    try{
+//                        System.out.println("即将发送数据："+thirdMsg[0].toString(CharsetUtil.UTF_8));
+//                        ctx.write(thirdMsg[0]);
+//                    }catch (Exception e){
+//                        e.printStackTrace();
+//                    }
+//                } else {
+//                    System.err.println("Bind attempt failed");
+//                    future.cause().printStackTrace();
+//                }
+//            }
+//        });
     }
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
