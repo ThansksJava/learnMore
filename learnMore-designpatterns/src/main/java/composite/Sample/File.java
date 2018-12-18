@@ -1,4 +1,4 @@
-package Composite.A2;
+package composite.Sample;
 
 public class File extends Entry {
     private String name;

@@ -1,5 +1,9 @@
-package Composite.Sample;
-
+package visitor;
+/**
+ * @author fengjie
+ * @version 1.0
+ * @date Created in 2018/12/18 10:25
+ */
 public class File extends Entry {
     private String name;
     private int size;
@@ -7,13 +11,18 @@ public class File extends Entry {
         this.name = name;
         this.size = size;
     }
+    @Override
     public String getName() {
         return name;
     }
+
+    @Override
     public int getSize() {
         return size;
     }
-    protected void printList(String prefix) {
-        System.out.println(prefix + "/" + this);
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }

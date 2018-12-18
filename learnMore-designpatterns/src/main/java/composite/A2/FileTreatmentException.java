@@ -1,7 +1,7 @@
-package Composite.Sample;
+package composite.A2;
 
 public class FileTreatmentException extends RuntimeException {
-    public FileTreatmentException() {
+	public FileTreatmentException() {
     }
     public FileTreatmentException(String msg) {
         super(msg);

@@ -1,4 +1,4 @@
-package Composite.Sample;
+package composite.Sample;
 
 public abstract class Entry {
     public abstract String getName();                               // 获取名字

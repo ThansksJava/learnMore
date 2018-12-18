@@ -1,4 +1,4 @@
-package Composite.A2;
+package composite.A2;
 
 public abstract class Entry {
     protected Entry parent; 

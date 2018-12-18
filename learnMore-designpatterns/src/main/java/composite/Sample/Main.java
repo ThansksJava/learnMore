@@ -1,4 +1,4 @@
-package Composite.Sample;
+package composite.Sample;
 
 public class Main {
     public static void main(String[] args) {

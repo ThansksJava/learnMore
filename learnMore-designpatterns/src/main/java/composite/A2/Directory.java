@@ -1,18 +1,18 @@
-package Composite.Sample;
+package composite.A2;
 
 import java.util.Iterator;
 import java.util.ArrayList;
 
 public class Directory extends Entry {
-    private String name;                    // 文件夹的名字
-    private ArrayList directory = new ArrayList();      // 文件夹中目录条目的集合
-    public Directory(String name) {         // 构造函数
+    private String name;
+    private ArrayList directory = new ArrayList();
+    public Directory(String name) {
         this.name = name;
     }
-    public String getName() {               // 获取名字
+    public String getName() {
         return name;
     }
-    public int getSize() {                  // 获取大小
+    public int getSize() {
         int size = 0;
         Iterator it = directory.iterator();
         while (it.hasNext()) {
@@ -21,11 +21,12 @@ public class Directory extends Entry {
         }
         return size;
     }
-    public Entry add(Entry entry) {         // 增加目录条目
+    public Entry add(Entry entry) {
         directory.add(entry);
+        entry.parent = this;                
         return this;
     }
-    protected void printList(String prefix) {       // 显示目录条目一览
+    protected void printList(String prefix) {
         System.out.println(prefix + "/" + this);
         Iterator it = directory.iterator();
         while (it.hasNext()) {
