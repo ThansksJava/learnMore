@@ -9,6 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>learnMore-permission</artifactId>
+    <packaging>war</packaging>
     <properties>
         <springframework.version>4.3.10.RELEASE</springframework.version>
     </properties>
