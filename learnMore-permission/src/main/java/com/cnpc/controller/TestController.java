@@ -1,5 +1,7 @@
 package com.cnpc.controller;
 
+import com.cnpc.common.ApplicationContextHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,9 +13,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class TestController {
+    @Autowired
+    private ApplicationContextHelper applicationContextHelper;
+
     @RequestMapping("/test")
     @ResponseBody
     public String test(){
         return "hello,permission";
     }
+
+    @RequestMapping("/testActH")
+    @ResponseBody
+    public void testActH(){
+//        applicationContextHelper.
+    }
+
 }
