@@ -33,6 +33,13 @@ public class SyntaxTest {
     public void splitTest(){
         String str = "11.11.67.30#SCAN_IP,11.11.67.39#PUBLIC_IP,11.11.67.37#VIP,11.11.67.28#SCAN_IP,11.11.67.29#SCAN_IP,";
         String [] sttrArray = str.split(",");
-    }
 
+        String str1 = "#123";
+        str1.split("#");
+    }
+    @Test
+    public void listIsEmptyMethodTest(){
+        List<String> list = new ArrayList<>();
+        System.out.println(list.isEmpty());
+    }
 }
