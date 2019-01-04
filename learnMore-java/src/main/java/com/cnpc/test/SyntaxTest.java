@@ -42,4 +42,13 @@ public class SyntaxTest {
         List<String> list = new ArrayList<>();
         System.out.println(list.isEmpty());
     }
+
+    @Test
+    public void convertClassTest(){
+        TestModel model = new TestModel();
+        Object obj = new TestModel("fengjie");
+        model = (TestModel)obj;
+        model.setName("feng");
+        System.out.println("finish");
+    }
 }
