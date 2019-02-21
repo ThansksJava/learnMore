@@ -51,4 +51,50 @@ public class SyntaxTest {
         model.setName("feng");
         System.out.println("finish");
     }
+    /**
+     * byte转为二进制输出
+     */
+    @Test
+    public void byteTest(){
+        int value =33;
+        String bs =String.format("%32s",Integer.toBinaryString(value));
+        System.out.println(bs);
+        byte b = 8;
+        String bs1 =String.format("%8s",Integer.toBinaryString(b));
+        System.out.println(bs1);
+        String bs2 =String.format("%8s",Integer.toBinaryString(b&0xFF));
+        System.out.println(bs2);
+        System.out.println("int to byte：数据发生变化");
+        int i = 200;
+        byte intToByte = (byte)i;
+        System.out.println("intToByte:"+intToByte);
+        System.out.println("byte to int:数据维持原值");
+        int intToByteTOInt = intToByte;
+        System.out.println("intToByteTOInt:"+intToByteTOInt);
+        System.out.println("将int to byte之后的值转为原来的int值需要做高位擦除操作 即& 0xFF");
+        System.out.println(intToByte& 0xFF);
+
+    }
+
+    /**
+     * 使用小精度存储大精度，利用符号位
+     */
+    @Test
+    public void  byteTest2(){
+        //short类型因为除去符号位可用只有15位表示不下
+        int i =0xFF60;// 65376
+        System.out.println(i);
+        // 00000000000000001111111101100000
+        System.out.println(String.format("%32s",Integer.toBinaryString(i)).replace(" ","0"));
+        //b1 只有i的低八位
+        byte b1 =(byte) i;
+        //b2 是i的倒数第二个八位，因为i先右移了八位，再转为byte再损失掉高16位
+        byte b2 =(byte)(i >>8);
+        //&0xFF是为了能够表示出在原来int的二进制原码中的样子
+        System.out.println("b1:"+String.format("%8s",Integer.toBinaryString(b1 &0xFF)).replace(" ","0"));
+        System.out.println("b2:"+String.format("%8s",Integer.toBinaryString(b2 &0xFF)).replace(" ","0"));
+        int ret =(b1 &0xFF)|(b2 &0xFF)<<8;
+        System.out.println("ret:"+String.format("%32s",Integer.toBinaryString(ret)).replace(" ","0"));
+        System.out.println(ret);
+    }
 }
