@@ -4,6 +4,7 @@ package com.cnpc.sss.newcoder;
  * @Description
  * @Time 19:26
  */
+@SuppressWarnings("Duplicates")
 public class SingleLinkedListReverse {
     static class Node{
         private Object value;

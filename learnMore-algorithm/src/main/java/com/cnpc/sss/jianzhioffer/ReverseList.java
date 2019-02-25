@@ -5,6 +5,7 @@ package com.cnpc.sss.jianzhioffer;
  * @version 1.0
  * @date Created in 2019/2/25 13:49
  */
+@SuppressWarnings("Duplicates")
 public class ReverseList {
     static class Node{
         private Object value;
@@ -56,6 +57,16 @@ public class ReverseList {
             System.out.println(head);
             return;
         }
+        Node p = head;
+        Node q = p.next;
+        head.next=null;
+        while(q != null){
+            Node r = q.next;
+            q.next = p;
+            p = q;
+            q = r;
+        }
+        System.out.println();
     }
     public static void main(String[] args) {
         Node node1 = new Node(1);
@@ -65,6 +76,7 @@ public class ReverseList {
         node1.next = node2;
         node2.next = node3;
         node3.next = node4;
-        reverseList(node1);
+//        reverseList(node1);
+        reverseList1(node1);
     }
 }
