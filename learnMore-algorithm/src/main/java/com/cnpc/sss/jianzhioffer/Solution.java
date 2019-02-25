@@ -1,4 +1,4 @@
-package com.cnpc.sss.newcoder.jianzhioffer;
+package com.cnpc.sss.jianzhioffer;
 
 /**
  * @Author fengjie
