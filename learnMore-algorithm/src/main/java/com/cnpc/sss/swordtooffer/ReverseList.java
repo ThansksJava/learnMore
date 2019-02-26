@@ -1,4 +1,4 @@
-package com.cnpc.sss.jianzhioffer;
+package com.cnpc.sss.swordtooffer;
 
 /**
  * @author fengjie
