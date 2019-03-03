@@ -56,8 +56,13 @@ public class Producer {
              * @param arguments other properties (binding parameters) todo
              */
             channel.queueBind(QUEUE,EXCHANGE,ROUTTINGKEY);
-            channel.basicPublish(EXCHANGE,ROUTTINGKEY, MessageProperties.PERSISTENT_TEXT_PLAIN,"hi".getBytes());
-            channel.basicPublish(EXCHANGE,ROUTTINGKEY, MessageProperties.PERSISTENT_TEXT_PLAIN,"你好".getBytes());
+            for(int i = 0;i <= 1000;i++){
+                if(i % 2 == 0){
+                    channel.basicPublish(EXCHANGE,ROUTTINGKEY, MessageProperties.PERSISTENT_TEXT_PLAIN,(i+" say hi").getBytes());
+                }else {
+                    channel.basicPublish(EXCHANGE,ROUTTINGKEY, MessageProperties.PERSISTENT_TEXT_PLAIN,(i+" 说你好").getBytes());
+                }
+            }
             channel.close();
             connection.close();
         } catch (IOException e) {

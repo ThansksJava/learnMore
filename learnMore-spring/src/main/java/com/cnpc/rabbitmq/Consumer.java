@@ -1,6 +1,7 @@
 package com.cnpc.rabbitmq;
 
 import com.rabbitmq.client.*;
+import lombok.extern.slf4j.Slf4j;
 import org.omg.CORBA.TIMEOUT;
 
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.util.concurrent.TimeoutException;
  * @version 1.0
  * @date Created in 2019/3/2 17:45
  */
+@Slf4j
 public class Consumer {
     private static final String USERNAME="fengjie";
     private static final String PASSWORD="fengjie";
@@ -29,7 +31,7 @@ public class Consumer {
             Connection connection = factory.newConnection(addresses);
             Channel channel = connection.createChannel();
             //客户端最多接受未被ACK的消息的个数
-            channel.basicQos(1);
+            channel.basicQos(64);
             DefaultConsumer consumer = new DefaultConsumer(channel) {
                 @Override
                 public void handleDelivery(String consumerTag,
@@ -38,7 +40,7 @@ public class Consumer {
                                            byte[] body)
                         throws IOException
                 {
-                    System.out.println("revieve message："+new String(body));
+                    log.info("receive message：{}",new String(body));
                     try {
                         TimeUnit.SECONDS.sleep(1);
                     } catch (InterruptedException e) {
@@ -48,11 +50,19 @@ public class Consumer {
                 }
             };
             channel.basicConsume("helloWorld",consumer);
+//            拉模式demo
+//            GetResponse response = channel.basicGet("helloWorld",false);
+//            System.out.println(new String(response.getBody()));
+//            channel.basicAck(response.getEnvelope().getDeliveryTag(),false);
             try {
                 TimeUnit.SECONDS.sleep(5);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            channel.addShutdownListener(cause -> log.info("程序运行结束，关闭channel"));
+            connection.addShutdownListener(cause -> {
+                log.info("程序运行结束，关闭连接");
+            });
             channel.close();
             connection.close();
 
