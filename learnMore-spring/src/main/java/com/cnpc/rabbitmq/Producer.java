@@ -56,11 +56,20 @@ public class Producer {
              * @param arguments other properties (binding parameters) todo
              */
             channel.queueBind(QUEUE,EXCHANGE,ROUTTINGKEY);
+            /*
+             * 将信道设置为发送方确认模式
+             */
+            channel.confirmSelect();
             for(int i = 0;i <= 1000;i++){
                 if(i % 2 == 0){
                     channel.basicPublish(EXCHANGE,ROUTTINGKEY, MessageProperties.PERSISTENT_TEXT_PLAIN,(i+" say hi").getBytes());
                 }else {
                     channel.basicPublish(EXCHANGE,ROUTTINGKEY, MessageProperties.PERSISTENT_TEXT_PLAIN,(i+" 说你好").getBytes());
+                }
+                try {
+                    System.out.println(channel.waitForConfirms());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
             channel.close();
