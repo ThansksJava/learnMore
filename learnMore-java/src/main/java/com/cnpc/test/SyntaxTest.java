@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * @author fengjie
@@ -51,6 +53,22 @@ public class SyntaxTest {
         model.setName("feng");
         System.out.println("finish");
     }
+    @Test
+    public void  treeMapStringKeyTest(){
+        Map<String,String> map = new TreeMap<>();
+        map.put("a","a");
+        map.put("b","b");
+        System.out.println(map);
+
+    }
+    @Test
+    public void  treeMapObjectKeyTest(){
+        Map<String,String> map = new TreeMap<>();
+        map.put("a","a");
+        map.put("b","b");
+        System.out.println(map);
+
+    }
     /**
      * byte转为二进制输出
      */
@@ -96,5 +114,30 @@ public class SyntaxTest {
         int ret =(b1 &0xFF)|(b2 &0xFF)<<8;
         System.out.println("ret:"+String.format("%32s",Integer.toBinaryString(ret)).replace(" ","0"));
         System.out.println(ret);
+    }
+
+    @Test
+    public void continueWhenCacheException(){
+        int  n = 1;
+        for(int i = 0;i < 9;i++){
+            n++;
+            try{
+                if (i % 2 == 0){
+                    int x = i / 0;
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                continue;
+            }
+            System.out.println("第"+(i+1)+"次循环");
+        }
+        System.out.println(n);
+    }
+    @Test
+    public void booleanDefault(){
+        Person person = new Person();
+        if(person.getUsed()){
+            System.out.println("xxxxxxxx");
+        }
     }
 }
