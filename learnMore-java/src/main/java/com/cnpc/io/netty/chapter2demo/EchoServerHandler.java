@@ -16,16 +16,13 @@ import java.net.InetSocketAddress;
  */
 @ChannelHandler.Sharable
 public class EchoServerHandler  extends ChannelInboundHandlerAdapter {
+    private ByteBuf byteBuf = null;
+
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        ByteBuf in = (ByteBuf)msg;
-        System.out.println("Server received:"+in.toString(CharsetUtil.UTF_8));
-//        final ByteBuf[] thirdMsg = new ByteBuf[1];
-        //充当客户端请求第三方
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        System.out.println(ctx.channel().remoteAddress()+"连入");
         Bootstrap bootstrap = new Bootstrap();
-        bootstrap.group(ctx.channel().eventLoop());
         bootstrap.channel(NioSocketChannel.class)
-                .remoteAddress(new InetSocketAddress("127.0.0.1",8089))
                 .handler(new SimpleChannelInboundHandler<ByteBuf>() {
                     @Override
                     public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -36,29 +33,23 @@ public class EchoServerHandler  extends ChannelInboundHandlerAdapter {
                     protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg1) throws Exception {
                         System.out.println("接收到第三方服务器消息。。。");
                         System.out.println(msg1.toString(CharsetUtil.UTF_8));
-//                        thirdMsg[0] = msg1;
-//                        ctx.writeAndFlush(thirdMsg[0]);
-                        ctx.writeAndFlush(msg1);
-                        System.out.println("发送到客户端完成");
+                        byteBuf = msg1;
                     }
                 });
-        ChannelFuture future = bootstrap.connect();
-//        future.addListener(new ChannelFutureListener() {
-//            @Override
-//            public void operationComplete(ChannelFuture future) {
-//                if (future.isSuccess()) {
-//                    try{
-//                        System.out.println("即将发送数据："+thirdMsg[0].toString(CharsetUtil.UTF_8));
-//                        ctx.write(thirdMsg[0]);
-//                    }catch (Exception e){
-//                        e.printStackTrace();
-//                    }
-//                } else {
-//                    System.err.println("Bind attempt failed");
-//                    future.cause().printStackTrace();
-//                }
-//            }
-//        });
+        bootstrap.group(ctx.channel().eventLoop());
+        ChannelFuture connectfuture = bootstrap.connect(new InetSocketAddress("localhost",8089));
+        connectfuture.addListener(new ChannelFutureListener() {
+            @Override
+            public void operationComplete(ChannelFuture future) throws Exception {
+                ctx.write(byteBuf);
+            }
+        });
+    }
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg) {
+        ByteBuf in = (ByteBuf)msg;
+        System.out.println("Server received:"+in.toString(CharsetUtil.UTF_8));
+//        ctx.write(byteBuf);
     }
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
@@ -70,10 +61,5 @@ public class EchoServerHandler  extends ChannelInboundHandlerAdapter {
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause){
         cause.printStackTrace();
         ctx.close();
-    }
-
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println(ctx.channel().remoteAddress()+"连入");
     }
 }
