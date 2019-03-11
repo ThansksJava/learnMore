@@ -1,42 +1,43 @@
-package com.cnpc.sss.newcoder;
+package com.cnpc.sss.swordtooffer;
+
+import com.cnpc.sss.newcoder.SortUtils;
 
 import java.util.Arrays;
 
 /**
- * 左程云老师是随机选择一个数跟最后一个数交换然后进行切分，我这样写应该效果一样吧
- * 长期期望：O(logN)
+ * 快排
+ * @author fengjie
+ * @version 1.0
+ * @date Created in 2019/3/6 9:27
  */
 @SuppressWarnings("Duplicates")
-public class HelanFlagRandomQuickSort {
-    public static void quickSort(int [] array,int start,int end){
-        if(array == null || array.length < 2){
+public class QuickSort {
+    public static void quickSort(int [] array ,int start,int end){
+        if(array == null||array.length < 2){
             return;
         }
-        if (start < end){
-            int target = array[start+ (int)(Math.random()*(end - start + 1))];
+        if(start < end){
+            int target = array[start+(int)(Math.random()*(end-start+1))];
             int [] location = partition(array,start,end,target);
             quickSort(array,start,location[0]);
             quickSort(array,location[1],end);
         }
-
     }
-    public static int [] partition(int [] array,int start,int end,int target){
+    public static int[] partition(int[] array,int start,int end,int target){
         int less = start - 1;
-        int more = end + 1;
+        int more = end -1;
         int index = start;
         while(index < more){
-            if(array[index] < target){
+            if(array[index]<target){
                 SortUtils.swap(array,++less,index++);
             }else if(array[index] > target){
                 SortUtils.swap(array,--more,index);
-            }else {
+            }else{
                 index++;
             }
-
         }
         return new int[]{less,more};
     }
-
     public static void main(String[] args) {
         boolean flag = true;
         for(int i = 0;i < 100;i++){
@@ -45,16 +46,13 @@ public class HelanFlagRandomQuickSort {
             int [] copy = SortUtils.copyArray(array);
             quickSort(array,0,array.length-1);
             SortUtils.comparator(copy);
-            System.out.println("第"+i+"次"+Arrays.toString(array));
+            System.out.println("第"+i+"次"+ Arrays.toString(array));
             if(!SortUtils.isEqual(array,copy)){
-                 flag = false;
-                 break;
+                flag = false;
+                break;
             }
         }
-        System.out.println(flag==true?"success":"fuck wrong");
-//        int [] array = {0,0,-1,3,4};
-//        quickSort(array,0,4);
-//        System.out.println(Arrays.toString(array));
+        System.out.println(flag?"success":"fuck wrong");
 
     }
 }
