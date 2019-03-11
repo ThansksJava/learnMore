@@ -1,10 +1,7 @@
 package com.cnpc.sss.configuration;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
-
-import javax.websocket.server.ServerEndpoint;
 
 /**
  * @Author fengjie
@@ -12,7 +9,7 @@ import javax.websocket.server.ServerEndpoint;
  * @Date Created in 2018/8/14
  * @Time 15:37
  */
-@Configuration
+//@Configuration
 public class WebSocketConfig {
     @Bean
     public ServerEndpointExporter serverEndpoint(){

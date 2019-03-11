@@ -49,6 +49,13 @@ security:
 #    reasonable: true
 #    supportMethodsArguments: true
 #    params: count=countSql
+task:
+  pool:
+    corePoolSize: 20
+    maxPoolSize: 40
+    keepAliveSeconds: 300
+    queueCapacity: 50
+
 ---
 spring:
   profiles: pro
