@@ -136,8 +136,14 @@ public class SyntaxTest {
     @Test
     public void booleanDefault(){
         Person person = new Person();
-        if(person.getUsed()){
+        if(person.isUsed()){
             System.out.println("xxxxxxxx");
         }
+    }
+    @Test
+    public void getSimpleName() {
+        Person person = new Person();
+        System.out.println(person.getClass().getSimpleName());
+        System.out.println(person.getClass().getName());
     }
 }
