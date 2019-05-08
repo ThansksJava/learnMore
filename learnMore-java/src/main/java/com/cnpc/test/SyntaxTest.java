@@ -1,17 +1,19 @@
 package com.cnpc.test;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.*;
+import java.util.zip.GZIPOutputStream;
 
 /**
  * @author fengjie
  * @version 1.0
  * @date Created in 2018/12/27 9:34
  */
+@Slf4j
 public class SyntaxTest {
     @Test
     public void threeOpTest(){
@@ -146,4 +148,44 @@ public class SyntaxTest {
         System.out.println(person.getClass().getSimpleName());
         System.out.println(person.getClass().getName());
     }
+    @Test
+    public void  compress() {
+        String str="我是被压缩的字符串";
+        String encoding="UTF-8";
+        if (str == null || str.length() == 0) {
+            return;
+        }
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        GZIPOutputStream gzip;
+        try {
+            gzip = new GZIPOutputStream(out);
+            gzip.write(str.getBytes(encoding));
+            gzip.close();
+        } catch (IOException e) {
+            log.error("gzip compress error.", e);
+        }
+        out.toByteArray();
+    }
+    @Test
+    public void listClone() {
+        List<String> list = new ArrayList<>(2);
+        list.add("1");
+        list.add("2");
+        List<String> listCp = new ArrayList<>(2);
+        Collections.copy(listCp,list);
+
+        listCp.add("3");
+
+        System.out.println(list);
+    }
+    @Test
+    public void IntegerCacheTest() {
+        Integer i1 = 33;
+        Integer i2 = 33;
+        System.out.println(i1 == i2);
+        Integer i3 = 333;
+        Integer i4 = 333;
+        System.out.println(i3 == i4);
+    }
+
 }
