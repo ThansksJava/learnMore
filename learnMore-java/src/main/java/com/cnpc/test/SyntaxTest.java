@@ -188,4 +188,15 @@ public class SyntaxTest {
         System.out.println(i3 == i4);
     }
 
+    @Test
+    public void objectStringConvertTest(){
+        ObjectStringConvert convert = new ObjectStringConvert();
+        String str = "1213124";
+        convert.setContent(str);
+        Object obj = convert.getContent();
+        System.out.println("obj:"+obj);
+        System.out.println("obj.toString:"+obj.toString());
+        System.out.println("(String)obj:"+(String)obj);
+    }
+
 }
