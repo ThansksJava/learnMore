@@ -2,7 +2,7 @@
 
 #### 项目介绍
 个人学习项目
-####模块介绍
+#### 模块介绍
 * learnMore-algorithm:学习数据结构与算法
 * learnMore-java:Java基础的一些东西
 * learnMore-designpatterns:设计模式学习，代码来自《图解设计模式》以及《设计模式之禅》两本书
