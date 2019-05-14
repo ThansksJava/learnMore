@@ -3,6 +3,9 @@ package com.learn.springcloud.controller;
 import com.learn.springcloud.entity.Dept;
 import com.learn.springcloud.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.client.discovery.simple.SimpleDiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +19,8 @@ import java.util.List;
 public class DeptController {
     @Autowired
     private DeptService service;
-
+    @Autowired
+    private DiscoveryClient simpleDiscoveryClient;
     @PostMapping(value="/dept/add")
     public boolean add(@RequestBody Dept dept)
     {
@@ -34,5 +38,14 @@ public class DeptController {
     {
         return service.list();
     }
-
+    @GetMapping(value="/dept/discovery")
+    public Object discovery(){
+        List<String> list = simpleDiscoveryClient.getServices();
+        System.out.println("所有的服务："+list);
+        List<ServiceInstance> serviceInstanceList = simpleDiscoveryClient.getInstances("microservice-dept");
+        for(ServiceInstance instance : serviceInstanceList){
+            System.out.println(instance.getServiceId()+"\t"+instance.getHost()+"\t"+instance.getUri());
+        }
+        return this.simpleDiscoveryClient;
+    }
 }

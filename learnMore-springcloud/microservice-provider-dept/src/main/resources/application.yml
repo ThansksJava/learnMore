@@ -19,5 +19,15 @@ spring:
       initial-size: 5                                       # 初始化连接数
       max-total: 5                                          # 最大连接数
       max-wait-millis: 200                                  # 等待连接获取的最大超时时间
-
-
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka,http://localhost:7002/eureka/,http://localhost:7003/eureka/
+  instance:
+    instance-id: microservice-dept8001
+    prefer-ip-address: true #显示IP地址而不是主机名，但是不做这个也会有，可能是组件更新了
+info:
+  app.name: microservice-dept
+  company.name: www.company.com
+  build.artifactId: @project.artifactId@
+  build.version: @project.version@  #教程中的$符号不生效，应该是因为被learnMore这个父工程的某些属性覆盖了
