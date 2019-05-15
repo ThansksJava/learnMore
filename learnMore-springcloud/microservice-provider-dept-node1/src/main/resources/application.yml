@@ -3,8 +3,7 @@ server:
 mybatis:
   config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
   type-aliases-package: com.learn.springcloud.entity    # 所有Entity别名类所在包
-  mapper-locations:
-    - classpath:mybatis/mapper/**/*.xml                       # mapper映射文件
+  mapper-locations: classpath:mybatis/mapper/**/*.xml                       # mapper映射文件
 spring:
   application:
     name: microservice-dept #多个服务都用这一个名字才行
@@ -22,7 +21,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:7001/eureka,http://localhost:7002/eureka/,http://localhost:7003/eureka/
+      defaultZone: http://eurekanode0.com:7001/eureka,http://eurekanode1.com:7002/eureka/,http://eurekanode2.com:7003/eureka/
   instance:
     instance-id: microservice-dept8002
     prefer-ip-address: true #显示IP地址而不是主机名，但是不做这个也会有，可能是组件更新了
