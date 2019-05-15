@@ -13,6 +13,8 @@
     <modules>
         <module>microservice-api</module>
         <module>microservice-provider-dept</module>
+        <module>microservice-provider-dept-node1</module>
+        <module>microservice-provider-dept-node2</module>
         <module>microservice-consumer-dept</module>
         <module>microservice-euraka</module>
         <module>microservice-euraka-node1</module>
