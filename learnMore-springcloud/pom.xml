@@ -17,7 +17,7 @@
         <module>microservice-provider-dept-node2</module>
         <module>microservice-provider-dept-hystrix</module>
         <module>microservice-consumer-dept</module>
-        <module>microservice-consumer-dept-feign</module>
+        <module>microservice-consumer-dept-feign_hystrix</module>
         <module>microservice-euraka</module>
         <module>microservice-euraka-node1</module>
         <module>microservice-euraka-node2</module>
