@@ -12,7 +12,7 @@ import java.util.List;
  * @version 1.0
  * @date Created in 2019/5/17 18:49
  */
-@FeignClient(value = "MICROSERVICE-DEPT")
+@FeignClient(value = "MICROSERVICE-DEPT",fallbackFactory = DeptFeignServiceFallbackFactory.class)
 public interface DeptFeignService {
     @RequestMapping(value="/dept/add")
     boolean add(Dept dept);
