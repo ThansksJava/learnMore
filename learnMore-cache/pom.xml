@@ -44,7 +44,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.cnpc.ehcache.Application</mainClass>
+                            <mainClass>com.learn.ehcache.Application</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

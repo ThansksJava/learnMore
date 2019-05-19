@@ -1,4 +1,4 @@
-import com.cnpc.sss.Application;
+import com.learn.Application;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

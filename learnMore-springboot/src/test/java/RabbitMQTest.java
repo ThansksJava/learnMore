@@ -1,4 +1,3 @@
-import com.cnpc.sss.Application;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.amqp.core.AmqpTemplate;

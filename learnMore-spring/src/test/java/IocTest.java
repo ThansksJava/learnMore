@@ -1,8 +1,8 @@
-import com.cnpc.ioc.BeanDefinition;
-import com.cnpc.ioc.PropertyValue;
-import com.cnpc.ioc.PropertyValues;
-import com.cnpc.ioc.factory.AutowireCapableBeanFactory;
-import com.cnpc.ioc.factory.BeanFactory;
+import com.learn.ioc.BeanDefinition;
+import com.learn.ioc.PropertyValue;
+import com.learn.ioc.PropertyValues;
+import com.learn.ioc.factory.AutowireCapableBeanFactory;
+import com.learn.ioc.factory.BeanFactory;
 import org.junit.Test;
 
 /**

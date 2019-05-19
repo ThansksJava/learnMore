@@ -41,7 +41,7 @@ security:
 #在java类中配置SqlSessionFactory后这个就不管用了
 #mybatis:
 #  mapper-locations: classpath:mapping/*.xml
-#  type-aliases-package: com.cnpc.sss.mybatis.model
+#  type-aliases-package: com.learn.sss.mybatis.model
 #  config-location: classpath:mybatis-config.xml
 #pagehelper分页插件
 #pagehelper:

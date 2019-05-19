@@ -13,7 +13,6 @@
         <module>learnMore-cache</module>
         <module>learnMore-spring</module>
         <module>learnMore-java</module>
-        <module>learnMore-influxDB</module>
         <module>learnMore-designpatterns</module>
         <module>learnMore-permission</module>
         <module>learnMore-springcloud</module>
