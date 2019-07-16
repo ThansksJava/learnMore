@@ -28,4 +28,14 @@ public class ReverseStack {
         reverse(stack);
         stack.push(i);
     }
+
+    public static void main(String[] args) {
+        Stack<Integer> stack = new Stack<>();
+        for(int i = 0;i <= 5;i++){
+            stack.push(i);
+        }
+        System.out.println(stack);
+        reverse(stack);
+        System.out.println(stack);
+    }
 }
