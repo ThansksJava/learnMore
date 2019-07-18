@@ -1,4 +1,4 @@
-package com.learn.swordtooffer;
+package com.learn.common;
 
 /**
  * @author fengjie
@@ -6,8 +6,8 @@ package com.learn.swordtooffer;
  * @date Created in 2019/2/25 14:18
  */
 public class Node{
-    Object value;
-    Node next;
+    public Object value;
+    public Node next;
     public Node() {
     }
     public Node(Object value) {

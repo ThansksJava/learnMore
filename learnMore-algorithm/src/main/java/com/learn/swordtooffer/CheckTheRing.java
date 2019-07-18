@@ -1,5 +1,7 @@
 package com.learn.swordtooffer;
 
+import com.learn.common.Node;
+
 /**
  * 检查是否有环、返回环的位置、环的节点数量
  * @author fengjie
