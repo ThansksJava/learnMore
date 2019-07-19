@@ -8,6 +8,8 @@ package com.learn.common;
 public class Node{
     public Object value;
     public Node next;
+    public Node left;
+    public Node right;
     public Node() {
     }
     public Node(Object value) {
