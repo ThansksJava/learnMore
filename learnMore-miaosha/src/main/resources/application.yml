@@ -1,0 +1,28 @@
+server:
+  port: 8888
+spring:
+  thymeleaf:
+    cache: false
+    content-type: text/html
+    enabled: true
+    encoding: UTF-8
+    mode: HTML5
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
+    url: jdbc:mysql://47.94.83.109:3306/miaosha              # 数据库名称
+    username: root
+    password: 1qaz@WSX
+    dbcp2:
+      min-idle: 5                                           # 数据库连接池的最小维持连接数
+      initial-size: 5                                       # 初始化连接数
+      max-total: 5                                          # 最大连接数
+      max-wait-millis: 200                                  # 等待连接获取的最大超时时间
+  redis:
+    host: 47.94.83.109
+    port: 6379
+    password: 1qaz@WSX
+mybatis:
+#  config-location:
+  type-aliases-package: com.learn.miaosha.entity
+  mapper-locations: classpath:mybatis/*.xml
