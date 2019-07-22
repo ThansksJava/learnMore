@@ -8,7 +8,8 @@ import java.util.Stack;
 import java.util.concurrent.LinkedBlockingDeque;
 
 /**
- * 构造一个不重复数字数组的maxtree
+ * 构造一个
+ * <i>不重复</i>数字数组的maxtree
  * @author fengjie
  * @version 1.0
  * @date Created in 2019年7月18日08:42:33
@@ -26,6 +27,12 @@ public class ArrayMaxTree {
         Map<Node,Node> LMaxMap = new HashMap<>();
         Map<Node,Node> RMaxMap = new HashMap<>();
         Stack<Node> stack = new Stack<>();
+        //要找到每一个元素左侧比它大的第一个数和右侧比它大的第一个数
+        //所以入栈规则是：
+        // 1、空栈直接入栈
+        // 2、入栈元素小于当前栈顶元素则直接入栈
+        // 3、入栈元素大于当前栈顶元素，则进入方法：求目前栈顶元素的左侧（或者右侧）第一个比它的数过程见代
+        //    码，这个过程一定是对的，挨个跟待入栈元素比较，如果有大于当前待入栈元素的值，那么循环就终止了
         for(int i = 0;i < len;i++){
             Node nNode = nodes[i];
             while(!stack.isEmpty() && (int)stack.peek().value < (int)nNode.value ){
@@ -94,7 +101,7 @@ public class ArrayMaxTree {
     }
 
     public static void main(String[] args) {
-        int [] arr = {3,4,5,1,2};
+        int [] arr = {6,5,4,3,8};
         Node node = getMaxTree(arr);
         System.out.println(node);
     }
