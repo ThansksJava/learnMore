@@ -1,4 +1,4 @@
-package com.learn.bestsolution;
+package com.learn.bestsolution.stackandqueue;
 
 import java.util.Stack;
 
