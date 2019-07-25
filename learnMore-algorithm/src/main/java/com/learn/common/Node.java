@@ -5,14 +5,14 @@ package com.learn.common;
  * @version 1.0
  * @date Created in 2019/2/25 14:18
  */
-public class Node{
-    public Object value;
-    public Node next;
-    public Node left;
-    public Node right;
+public class Node<T>{
+    public T value;
+    public Node<T> next;
+    public Node<T> left;
+    public Node<T> right;
     public Node() {
     }
-    public Node(Object value) {
+    public Node(T value) {
         this.value = value;
     }
 }
