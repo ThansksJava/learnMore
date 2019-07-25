@@ -26,7 +26,12 @@ public class DifferenceVEqNum {
         int len = arr.length;
         LinkedList<Integer> max = new LinkedList<>();
         LinkedList<Integer> min = new LinkedList<>();
-
+        //从i(子数组的起始位置)开始到j（子数组的结束位置）
+        //i到j之间的最大值与最小值放入两个双端队列
+        //每次j挪动一个位置都要判断一下此时的最大值与最小值，如果当前j位置最大最小值差值已经大于给定数值了则停下
+        //此时以i开头的子数组数目为 j-i ex:1,2,3...   1,2  1,2,3
+        //i挪动一个位置以后进入下一个循环，从i+1  到  j=j+x ,到原来的j位置显然最大值最小值已经入栈，直接从j+1开始判断就行了
+        //也就是说所有的位置最多只进出队列一次 所以时间复杂度稳定在O(n)
         while(i < len){
             while(j < len){
                 while(!max.isEmpty()&& arr[max.peekLast()] <= arr[j]){
@@ -43,6 +48,7 @@ public class DifferenceVEqNum {
                 }
                 j++;
             }
+            //当遍历到起始位置i在队列中，则需要移除之
             if(min.peekFirst() == i){
                 min.pollFirst();
             }
