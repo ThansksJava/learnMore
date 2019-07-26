@@ -10,6 +10,7 @@ public class Node<T>{
     public Node<T> next;
     public Node<T> left;
     public Node<T> right;
+    public Node<T> pre;
     public Node() {
     }
     public Node(T value) {
