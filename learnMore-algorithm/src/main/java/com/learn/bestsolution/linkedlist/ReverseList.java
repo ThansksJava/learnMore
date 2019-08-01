@@ -42,7 +42,59 @@ public class ReverseList {
         }
         return pre;
     }
+
+
+    public static Node<Integer> reversePartList(Node<Integer> head,int start,int end){
+        if(head == null || head.next == null){
+            return head;
+        }
+        Node<Integer> sPre = null;
+        Node<Integer> eBeh = null;
+        Node<Integer> cur = head;
+        int index = 1;
+        while (cur != null && index <= end+1){
+            if(start != 0 &&index == start-1){
+                sPre = cur;
+            }
+            if(index == end+1){
+                eBeh = cur;
+            }
+            cur = cur.next;
+            index++;
+        }
+        Node<Integer> hp = null;
+        Node<Integer> hq = null;
+        Node<Integer> hr = null;
+        if(sPre != null){
+           hp = sPre.next;
+           hq = sPre.next.next;
+           hr = sPre.next.next.next;
+        }else {
+            hp = head;
+            hq = head.next;
+            hr = head.next.next;
+        }
+
+        while(hq != eBeh){
+            hq.next = hp;
+            hp = hq;
+            hq = hr;
+            if(hr != null){
+                hr = hr.next;
+            }
+        }
+        if(sPre != null){
+            Node<Integer> tmp = sPre.next;
+            tmp.next = eBeh;
+            sPre.next = hp;
+            return head;
+        }else {
+            head.next=eBeh;
+            return hp;
+        }
+    }
     public static void main(String[] args) {
-        CommonNode.printSingleList(reverseSingleList(CommonNode.singleHead));
+//        CommonNode.printSingleList(reverseSingleList(CommonNode.singleHead));
+        CommonNode.printSingleList(reversePartList(CommonNode.singleHead,1,8));
     }
 }
