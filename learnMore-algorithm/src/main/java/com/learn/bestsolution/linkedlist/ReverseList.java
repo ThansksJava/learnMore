@@ -2,6 +2,9 @@ package com.learn.bestsolution.linkedlist;
 
 import com.learn.common.Node;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 /**
  * 反转链表
  * @author fengjie
@@ -27,8 +30,19 @@ public class ReverseList {
         head.next = null;
         return p;
     }
-
+    public static Node<Integer> reverseDoubleList(Node<Integer> head){
+        Node<Integer> pre = null;
+        Node<Integer> next = null;
+        while(head != null){
+            next = head.next;
+            head.pre = pre;
+            head.next = next;
+            pre = head;
+            head = next;
+        }
+        return pre;
+    }
     public static void main(String[] args) {
-        CommonNode.printList(reverseSingleList(CommonNode.head));
+        CommonNode.printSingleList(reverseSingleList(CommonNode.singleHead));
     }
 }
