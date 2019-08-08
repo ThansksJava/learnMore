@@ -94,10 +94,10 @@ public class CommonNode {
     public static void printSingleList(Node head){
         while(head != null){
             System.out.print(head.value+"->");
-            head = head.next;
             if(head.next == head){
                 break;
             }
+            head = head.next;
         }
         System.out.println("null");
     }
