@@ -11,6 +11,7 @@ public class Node<T>{
     public Node<T> left;
     public Node<T> right;
     public Node<T> pre;
+    public Node<T> rand;
     public Node() {
     }
     public Node(T value) {
