@@ -94,9 +94,71 @@ public class ReverseList {
         }
     }
 
+    /**
+     * TODO 以后再想，我丢
+     * 从尾部开始按组反转链表
+     * @param head 头结点
+     * @param k 一组节点个数
+     * @return
+     */
+    public static Node<Integer> reverseListByGroup(Node<Integer> head,int k){
+        if(head == null || head.next == null){
+            return head;
+        }
+        Node cur = head;
+        int len = 0;
+        while(cur != null){
+            cur = cur.next;
+            len++;
+        }
+        cur = head;
+        int tmp = 1;
+        Node<Integer> afterNode = null;
+        while(len - k + 1 > 0){
+            if(tmp == len - k || len - k == 0){
+                Node<Integer> node1 = cur.next;
+                Node<Integer> node2 = node1.next;
+                node1.next = afterNode;
+                int count = 1;
+                while(count < k){
+                    Node node3 = node2.next;
+                    node2.next = node1;
+                    node1 = node2;
+                    node2 = node3;
+                    count++;
+                }
+                cur.next = node1;
+                afterNode = node1;
+                len = tmp;
+                tmp = 1;
+                cur = head;
+                continue;
+            }
+            cur =cur.next;
+            tmp++;
+        }
+        return head;
+    }
     public static void main(String[] args) {
 //        CommonNode.printSingleList(reverseSingleList(CommonNode.singleHead));
-        CommonNode.printSingleList(reversePartList(CommonNode.singleHead,1,8));
+//        CommonNode.printSingleList(reversePartList(CommonNode.singleHead,1,8));
+        Node<Integer> node = new Node(1);
+        Node<Integer> node1 = new Node(2);
+        Node<Integer> node2 = new Node(3);
+        Node<Integer> node3 = new Node(4);
+        Node<Integer> node4 = new Node(5);
+        Node<Integer> node5 = new Node(6);
+        Node<Integer> node6 = new Node(7);
+        Node<Integer> node7 = new Node(8);
+        node6.next = node7;
+        node5.next = node6;
+        node4.next = node5;
+        node3.next = node4;
+        node2.next = node3;
+        node1.next = node2;
+        node.next = node1;
+        Node<Integer> singleHead = node;
+        CommonNode.printSingleList(reverseListByGroup(node,4));
     }
 
 
