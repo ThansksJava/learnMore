@@ -139,6 +139,67 @@ public class ReverseList {
         }
         return head;
     }
+
+    /**
+     * 正向按组反转链表,每k个节点
+     * @param head
+     * @param k
+     * @return
+     */
+    public static Node<Integer> reverseListByGroupPositive(Node<Integer> head,int k){
+        if(head == null || head.next == null){
+            return head;
+        }
+        //使用四个变量记录下待反转段的起点(start) 终点(end),起点前节点(pre),终点后节点(next) 用于连接
+        Node<Integer> cur = head;
+        Node<Integer> start = null;
+        Node<Integer> pre = null;
+        Node<Integer> next = null;
+        int count = 1;
+        while(cur != null){
+            next = cur.next;
+            if(count == k){
+                //第一次的时候，起始点是head，head的pre是null，第二次就从pre的next开始了
+                start = pre == null?head:pre.next;
+                head = pre == null?cur:next;
+                resign(pre,start,cur,next);
+                //反转之后start刚好是新一轮反转的pre
+                pre = start;
+                count = 0;
+
+            }
+            count++;
+            cur = next;
+        }
+
+        return head;
+    }
+
+    /**
+     * 执行反转
+     * @param left
+     * @param start
+     * @param end
+     * @param right
+     * @return
+     */
+    public static void resign(Node<Integer> left,Node<Integer> start,Node<Integer> end,Node<Integer> right){
+        Node pre = start;
+        Node cur = start.next;
+        Node next = null;
+        while(cur != right){
+            next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        if(left != null){
+            left.next = end;
+        }
+        start.next = right;
+    }
+
+
     public static void main(String[] args) {
 //        CommonNode.printSingleList(reverseSingleList(CommonNode.singleHead));
 //        CommonNode.printSingleList(reversePartList(CommonNode.singleHead,1,8));
