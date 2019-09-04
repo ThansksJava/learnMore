@@ -2,6 +2,11 @@ package com.learn.bestsolution.binarytree;
 
 /**
  * 二叉树中符合BST的最大拓扑结构
+ * 按照二叉树的规则进行遍历
+ * L.v < H.v && R.v > H
+ * 那么取出一个节点记为C,头结点记为H,根据规则C.value < H.value 那么H将向左子树移动，反之，向右子树移动
+ * 如果C可以作为BST的节点，那么将会C == H ,遍历到最后都没找到满足情况的节点，那么说明C不能构成BST，返回false
+ * 综上所述，每一个节点都要从头遍历一次，O(n^2)
  * @author fengjie
  * @version 1.0
  * @date Created in 2019/9/2
@@ -16,7 +21,15 @@ public class BiggestBSTTOPO {
         max = Math.max(bstTopoSize(head.right),max);
         return max;
     }
+
+    /**
+     * 最大的BST拓扑
+     * @param h
+     * @param n
+     * @return
+     */
     public static int maxTopo(Node h,Node n){
+        //h在后面的循环不变
         if(h != null && n != null && isBSTNode(h,n,n.value)){
             return maxTopo(h,n.left)+maxTopo(h,n.right)+1;
         }
