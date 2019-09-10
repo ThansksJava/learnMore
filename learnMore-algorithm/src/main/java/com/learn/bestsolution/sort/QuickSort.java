@@ -1,7 +1,5 @@
 package com.learn.bestsolution.sort;
 
-import java.util.Random;
-
 /**
  * @author fengjie
  * @version 1.0
@@ -12,12 +10,12 @@ public class QuickSort {
         if(start >= end || arr == null || arr.length == 0){
             return;
         }
-        int pivotIndex = partation(arr,start,end);
+        int pivotIndex = partition(arr,start,end);
         quickSort(arr,start,pivotIndex-1);
         quickSort(arr,pivotIndex+1,end);
     }
 
-    public static int  partation(int [] arr,int start,int end){
+    public static int partition(int [] arr, int start, int end){
         int rand = (int)Math.random()*(end - start + 1);
         swap(arr,rand,start);
         //随机找一个元素
