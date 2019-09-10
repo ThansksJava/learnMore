@@ -9,7 +9,7 @@ import java.util.Random;
  */
 public class QuickSort {
     public static void quickSort(int [] arr,int start,int end){
-        if(start >= end){
+        if(start >= end || arr == null || arr.length == 0){
             return;
         }
         int pivotIndex = partation(arr,start,end);
