@@ -100,7 +100,7 @@ public class Server {
 							ObjectInputStream ois = new ObjectInputStream(in);
 							Object obj = ois.readObject();
 							lastReceiveTime = System.currentTimeMillis();
-							System.out.println("接收：\t"+obj);
+							System.out.println(s.getRemoteSocketAddress()+"接收：\t"+obj);
 							ObjectAction oa = actionMapping.get(obj.getClass());
 							oa = oa==null?new DefaultObjectAction():oa;
 							Object out = oa.doAction(obj,Server.this);
