@@ -9,20 +9,14 @@ import java.util.*;
  */
 public class HIndex {
     public static int hIndex(int[] citations){
-        Integer [] citationsI = new Integer[citations.length];
-        for (int i = 0; i < citations.length; i++) {
-            citationsI[i] = citations[i];
-        }
-        Arrays.sort(citationsI, (o1, o2) -> o2-o1);
-        for (int citation : citationsI) {
-            System.out.print(citation+",");
-        }
-        for (int i = 0; i < citationsI.length; i++) {
-            if (i >= citations[i]){
-                return i - 1;
+        Arrays.sort(citations);
+        int len = citations.length;
+        for (int i = len-1; i >= 0; i--) {
+            if (citations[i] <= len-i-1){
+                return len-i-1;
             }
         }
-        return citationsI.length;
+        return len;
     }
 
     public static void main(String[] args) {
