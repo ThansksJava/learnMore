@@ -18,6 +18,7 @@
         <module>learnMore-springcloud</module>
         <module>learnMore-miaosha</module>
         <module>learnMore-oauth2-sso</module>
+        <module>learnMore-weakpasswd</module>
     </modules>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>

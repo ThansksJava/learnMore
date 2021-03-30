@@ -10,4 +10,6 @@
 * learnMore-permission:慕课网上的权限课代码
 * learnMore-oauth2-sso:使用oauth2实现单点登录来自网络 Copy As Follows
     * https://github.com/chengjiansheng/cjs-oauth2-sso-demo.git
+  
+* learnMore-weakpasswd:copy from https://blog.csdn.net/qq_21794823/article/details/83114315 
 
