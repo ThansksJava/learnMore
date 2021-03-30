@@ -123,9 +123,8 @@ public class Config {
         Properties prop = new Properties();
  
         try{
-            //读取属性文件enc.properties
-            InputStream in = new BufferedInputStream(new FileInputStream("password.properties"));
-            prop.load(in);
+            //读取属性文件
+            prop.load(prop.getClass().getResourceAsStream("/password.properties"));
             Iterator<String> it=prop.stringPropertyNames().iterator();
             while(it.hasNext()) {
                 String key = it.next();
@@ -191,7 +190,6 @@ public class Config {
                 }
  
             }
-            in.close();
  
             if("2".equals(SYSTEM_GRADE) || "3".equals(SYSTEM_GRADE) ) {
  
