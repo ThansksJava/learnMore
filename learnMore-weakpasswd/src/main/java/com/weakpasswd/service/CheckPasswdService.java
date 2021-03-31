@@ -2,7 +2,7 @@ package com.weakpasswd.service;
  
 import java.lang.String;
 import com.weakpasswd.config.Config;
-public class CheckPWD {
+public class CheckPasswdService {
     /**
      * @brief   检测密码中字符长度
      * @param[in] password            密码字符串
