@@ -1,60 +1,10 @@
 server:
   port: 8888
   context-path: /learnMore
-#  ssl:
-#    key-store: .keystore
-#    key-store-password: 123456
-#    key-store-type: JKS
-#    key-alias: tomcat1
+
 spring:
   profiles:
     active: dev
-#  jpa:
-#    database-platform: org.hibernate.dialect.MySQL5Dialect
-#    database: mysql
-#    generate-ddl: true
-##     妈的竟然不管用，哪儿的问题呢,妈个鸡把entityManagerFactory的配置去了就好了！！！！
-#    hibernate:
-#      ddl-auto: update
-#      naming:
-#        strategy: org.hibernate.cfg.ImprovedNamingStrategy
-#    show-sql: true
-#    properties:
-#      hibernate:
-#        format_sql: true
-  redis:
-    host: 192.168.25.4
-    port: 6379
-    timeout: 3000
-#thymeleaf配置
-  thymeleaf:
-    cache: false
-#日志配置
-logging:
-  level:
-    org.springframework.security: info
-    com.learn.sss.mybatis.dao: debug
-#spring security
-security:
-  #如果配置了，就需要手动配置其他的拦截了，默认是拦截/css/**,/js/**,/images/**,/**/favicon.ico的
-  ignored: /druid/**,/css/**,/js/**,/images/**,/**/favicon.ico,/showPerson,/chorus/**
-#在java类中配置SqlSessionFactory后这个就不管用了
-#mybatis:
-#  mapper-locations: classpath:mapping/*.xml
-#  type-aliases-package: com.learn.sss.mybatis.model
-#  config-location: classpath:mybatis-config.xml
-#pagehelper分页插件
-#pagehelper:
-#    helperDialect: mysql
-#    reasonable: true
-#    supportMethodsArguments: true
-#    params: count=countSql
-task:
-  pool:
-    corePoolSize: 20
-    maxPoolSize: 40
-    keepAliveSeconds: 300
-    queueCapacity: 50
 
 ---
 spring:
@@ -64,9 +14,6 @@ spring:
     username: root
     password:
     driver-class-name: com.mysql.jdbc.Driver
-person:
-  name: fengjie
-  age: 24
 ---
 spring:
   profiles: dev
@@ -75,12 +22,4 @@ spring:
     username: root
     password:
     driver-class-name: com.mysql.jdbc.Driver
-  rabbitmq:
-    host: 11.11.176.209
-    port: 5672
-    username: fengjie
-    password: fengjie
-    virtual-host: fengjie
-person:
-  name: someone
-  age: 999
+9
