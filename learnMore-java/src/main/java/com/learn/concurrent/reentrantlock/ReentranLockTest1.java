@@ -11,10 +11,10 @@ import java.util.concurrent.locks.ReentrantLock;
  * @date Created in 2019/12/23
  */
 public class ReentranLockTest1 {
-    private Lock lock = new ReentrantLock(true);
+    private ReentrantLock lock = new ReentrantLock();
     public void testReentrant(){
+        lock.lock();
         try {
-            lock.lock();
             System.out.println(Thread.currentThread().getName() +" Start-----");
             Thread.sleep(1000);
             System.out.println(Thread.currentThread().getName() +" End-------");
