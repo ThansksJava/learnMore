@@ -19,7 +19,12 @@ public class JRunnable implements Runnable{
     //目前啥也不干，就打印一下就行
     @Override
     public void run() {
-            log.debug("==================task[{}]执行",taskName);
+        try {
+            TimeUnit.MILLISECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        log.debug("==================task[{}]执行",taskName);
     }
 
     public String getTaskName() {

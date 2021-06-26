@@ -13,14 +13,15 @@ import java.util.Deque;
 @Slf4j(topic = "enjoy")
 public class JThreadNode extends Thread{
     private JRunnable task;
-    private JQueue queue;
-    public JThreadNode(String name,JRunnable task,JQueue queue){
+    private JThreadPool jThreadPool;
+    public JThreadNode(String name,JRunnable task,JThreadPool jThreadPool){
         setName(name);
         this.task = task;
-        this.queue = queue;
+        this.jThreadPool = jThreadPool;
     }
     @Override
     public void run() {
+        JQueue queue = jThreadPool.getQueue();
         log.debug("创建Thread:"+Thread.currentThread().getName());
         //if the task is not null or we can get a task,the thread will keep alive
         while(task != null || (task = queue.get()) != null){
@@ -29,5 +30,6 @@ public class JThreadNode extends Thread{
             task = null;
         }
         log.debug(""+Thread.currentThread().getName()+"结束运行");
+        jThreadPool.getThreadSet().remove(this);
     }
 }
