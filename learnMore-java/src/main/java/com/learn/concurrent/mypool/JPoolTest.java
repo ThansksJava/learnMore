@@ -3,8 +3,7 @@ package com.learn.concurrent.mypool;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * this version only can submit a task and create a thread to execute it,one task one thread,
- * if the thread num is less than core thread size
+ * v1.1 add a queue to store task that need to wait
  * @author fengjie
  * @version 1.0
  * @date 2021/6/26
@@ -13,12 +12,11 @@ import lombok.extern.slf4j.Slf4j;
 public class JPoolTest {
     public static void main(String[] args) throws InterruptedException {
         int coreSize = 2;
-        JThreadPool jThreadPool = new JThreadPool(coreSize);
-        for (int tn = 0; tn < 3; tn++) {
+        int queueSize = 3;
+        JThreadPool jThreadPool = new JThreadPool(coreSize,queueSize);
+        for (int tn = 1; tn <= 6; tn++) {
             int finalTn = tn;
-            jThreadPool.submit(()->{
-                log.debug("正在执行task[{}]",finalTn);
-            });
+            jThreadPool.submit(new JRunnable("task-"+finalTn));
         }
 
         log.debug("main thread...");
