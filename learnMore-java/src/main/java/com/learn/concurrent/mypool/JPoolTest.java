@@ -14,7 +14,7 @@ public class JPoolTest {
         int coreSize = 2;
         int queueSize = 3;
         JThreadPool jThreadPool = new JThreadPool(coreSize,queueSize);
-        for (int tn = 1; tn <= 6; tn++) {
+        for (int tn = 1; tn <= 7; tn++) {
             int finalTn = tn;
             jThreadPool.submit(new JRunnable("task-"+finalTn));
         }

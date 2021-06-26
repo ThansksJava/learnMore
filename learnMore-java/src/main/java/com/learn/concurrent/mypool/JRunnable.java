@@ -19,13 +19,7 @@ public class JRunnable implements Runnable{
     //目前啥也不干，就打印一下就行
     @Override
     public void run() {
-        try {
-            log.debug("当前正在运行的任务是task[{}]",taskName);
-            TimeUnit.MILLISECONDS.sleep(2000);
-            log.debug("task[{}]执行完毕",taskName);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+            log.debug("==================task[{}]执行",taskName);
     }
 
     public String getTaskName() {

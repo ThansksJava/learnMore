@@ -36,7 +36,7 @@ public class JThreadPool {
             jThreadNode.start();
 
         }else {
-            log.debug("当前核心线程已满，应该将接下来的node暂时放到阻塞队列中去");
+            log.debug("当前核心线程已满，task[{}]暂时放到阻塞队列中去",task.getTaskName());
             queue.put(task);
         }
     }

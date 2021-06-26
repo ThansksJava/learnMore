@@ -21,13 +21,13 @@ public class JThreadNode extends Thread{
     }
     @Override
     public void run() {
-        log.debug("Thread:"+Thread.currentThread().getName()+"开始运行");
+        log.debug("创建Thread:"+Thread.currentThread().getName());
         //if the task is not null or we can get a task,the thread will keep alive
         while(task != null || (task = queue.get()) != null){
-            log.debug("Thread:"+Thread.currentThread().getName()+"正在执行task[{}]",task.getTaskName());
+            log.debug(""+Thread.currentThread().getName()+"正在执行task[{}]",task.getTaskName());
             task.run();
             task = null;
         }
-        log.debug("Thread:"+Thread.currentThread().getName()+"结束运行");
+        log.debug(""+Thread.currentThread().getName()+"结束运行");
     }
 }
