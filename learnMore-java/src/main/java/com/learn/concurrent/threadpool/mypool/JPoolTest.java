@@ -1,4 +1,4 @@
-package com.learn.concurrent.mypool;
+package com.learn.concurrent.threadpool.mypool;
 
 import lombok.extern.slf4j.Slf4j;
 
