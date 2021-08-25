@@ -30,7 +30,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
-            <version>4.1.4.RELEASE</version>
         </dependency>
     </dependencies>
     <properties>
