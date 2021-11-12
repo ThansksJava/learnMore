@@ -1,18 +1,13 @@
-package com.learn.springcloud;
+package com.springcloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
-/**
- * @author fengjie
- * @version 1.0
- * @date Created in 2019/5/12 19:14
- */
 @SpringBootApplication
 @EnableEurekaClient
-public class SpringCloudProviderDept {
+public class PaymentMain8002 {
     public static void main(String[] args) {
-        SpringApplication.run(SpringCloudProviderDept.class,args);
+        SpringApplication.run(PaymentMain8002.class,args);
     }
 }

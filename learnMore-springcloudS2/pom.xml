@@ -13,6 +13,9 @@
         <module>microservice-provider-payment8001</module>
         <module>microservice-api-common</module>
         <module>microservice-consumer-order80</module>
+        <module>microservice--eureka-server7001</module>
+        <module>microservice--eureka-server7002</module>
+        <module>microservice-provider-payment8002</module>
     </modules>
     <artifactId>learnMore-springcloudS2</artifactId>
     <!-- 统一管理jar包版本 -->
@@ -85,6 +88,12 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
                 <optional>true</optional>
+            </dependency>
+<!--            解决StringUtils.matchesCharacter的问题-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>5.2.13.RELEASE</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
