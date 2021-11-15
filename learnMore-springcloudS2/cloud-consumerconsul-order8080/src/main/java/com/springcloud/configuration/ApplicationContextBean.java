@@ -1,27 +1,21 @@
-package com.learn.springcloud.cfgbean;
+package com.springcloud.configuration;
 
-import com.netflix.loadbalancer.IRule;
-import com.netflix.loadbalancer.RandomRule;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * @author fengjie
- * @version 1.0
- * @date Created in 2019/5/12 19:44
+ * @author Feng Jie
+ * @date 2021/11/12 10:22
  */
 @Configuration
-public class ConfigBean {
+public class ApplicationContextBean {
     @Bean
     @LoadBalanced
     public RestTemplate getRestTemplate()
     {
         return new RestTemplate();
     }
-    @Bean
-    IRule myRule(){
-        return new RandomRule();
-    }
+
 }
