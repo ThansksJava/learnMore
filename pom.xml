@@ -15,7 +15,6 @@
         <module>learnMore-java</module>
         <module>learnMore-designpatterns</module>
         <module>learnMore-permission</module>
-        <module>learnMore-springcloud</module>
         <module>learnMore-miaosha</module>
         <module>learnMore-oauth2-sso</module>
         <module>learnMore-weakpasswd</module>
@@ -34,6 +33,7 @@
         <slf4j.version>1.7.25</slf4j.version>
         <springboot.version>2.3.9.RELEASE</springboot.version>
         <fastjson.version>1.2.56</fastjson.version>
+        <hutool.version>5.7.16</hutool.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -41,6 +41,11 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-crypto</artifactId>
+                <version>${hutool.version}</version>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
