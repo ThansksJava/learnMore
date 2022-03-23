@@ -18,8 +18,8 @@ spring:
 spring:
   profiles: dev
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/kaopu
+    name: riewa
+    url: jdbc:mysql://192.168.253.134:3306/riewa?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     username: root
-    password:
-    driver-class-name: com.mysql.jdbc.Driver
-9
+    password: 1qaz@WSX
+    driver-class-name: com.mysql.cj.jdbc.Driver

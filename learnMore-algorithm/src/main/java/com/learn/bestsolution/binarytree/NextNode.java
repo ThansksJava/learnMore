@@ -1,5 +1,7 @@
 package com.learn.bestsolution.binarytree;
 
+import java.util.Stack;
+
 /**
  * @author fengjie
  * @version 1.0
@@ -20,6 +22,7 @@ public class NextNode {
             }
             return parent;
         }
+
     }
 
     public static Node getLeftMost(Node node){

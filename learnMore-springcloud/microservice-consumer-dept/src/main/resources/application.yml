@@ -1,7 +1,0 @@
-server:
-  port: 6001
-eureka:
-  client:
-    register-with-eureka: false
-    service-url:
-      defaultZone: http://eurekanode0.com:7001/eureka,http://eurekanode1.com:7002/eureka/,http://eurekanode2.com:7003/eureka/

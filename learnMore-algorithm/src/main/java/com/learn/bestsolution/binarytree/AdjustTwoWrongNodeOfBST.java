@@ -1,6 +1,8 @@
 package com.learn.bestsolution.binarytree;
 
-import java.util.Stack;
+import com.sun.jmx.remote.internal.ArrayQueue;
+
+import java.util.*;
 
 /**
  * @author fengjie
@@ -30,5 +32,13 @@ public class AdjustTwoWrongNodeOfBST {
             }
         }
         return errs;
+    }
+
+    public static void main(String[] args) {
+        Stack<String> s = new Stack<>();
+        s.peek();
+
+        ArrayDeque<List<Integer>> deque = new ArrayDeque<>();
+
     }
 }
