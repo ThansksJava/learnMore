@@ -1,4 +1,4 @@
-package com.learn.concurrent.practice;
+package com.learn.concurrent.practice.locksupport;
 
 import java.util.concurrent.locks.LockSupport;
 
@@ -13,7 +13,7 @@ public class PrintNum {
     public static void main(String[] args) {
         a = new Thread(()->{
             for (;;) {
-                System.out.println(num++);
+                System.out.println(Thread.currentThread().getName()+":"+num++);
                 LockSupport.unpark(b);
                 LockSupport.park();
             }
@@ -21,7 +21,7 @@ public class PrintNum {
         b = new Thread(()->{
             LockSupport.park();
             for (; ;) {
-                System.out.println(num++);
+                System.out.println(Thread.currentThread().getName()+":"+num++);
                 LockSupport.unpark(a);
                 LockSupport.park();
             }

@@ -1,4 +1,4 @@
-package com.learn.concurrent.practice;
+package com.learn.concurrent.practice.locksupport;
 
 import java.util.concurrent.locks.LockSupport;
 
