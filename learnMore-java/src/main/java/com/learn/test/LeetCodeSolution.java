@@ -40,10 +40,60 @@ class TreeNode {
 public class LeetCodeSolution {
 
     public static void main(String[] args) {
-       String s = "123";
 
-
+        StringBuilder sql = new StringBuilder();
+        sql.append("12345");
+        sql.deleteCharAt(4);
+        System.out.println(sql);
     }
+    static int  ret22 = 0;
+    public static int pathSum(TreeNode root, int targetSum) {
+        if(root == null){
+            return 0;
+        }
+        pathSum1(root, 0, targetSum);
+        pathSum(root.left, targetSum);
+        pathSum(root.right, targetSum);
+        return ret22;
+    }
+
+    public static void pathSum1(TreeNode root, int sum, int targetSum) {
+        if(root == null){
+            return;
+        }
+        if(sum == targetSum){
+            ret22++;
+        }
+        sum += root.val;
+        pathSum1(root.left, sum, targetSum);
+        pathSum1(root.right, sum, targetSum);
+    }
+
+
+
+
+
+    static List<Integer> list = new ArrayList<>();
+    public static int sumNumbers(TreeNode root) {
+        sumNumbers(root, 0);
+        int sum = 0;
+        for(int a : list){
+            sum += a;
+        }
+        return sum;
+    }
+
+    public static void sumNumbers(TreeNode root,int sum) {
+        if(root.right == null && root.left == null){
+            list.add(sum * 10 + root.val );
+            return;
+        }
+        sum = sum * 10 + root.val;
+        sumNumbers(root.left, sum);
+        sumNumbers(root.right, sum);
+    }
+
+
     public static int findMaxForm(String[] strs, int m, int n) {
         //dp[i][j]表示i个0和j个1时的最大子集
         int[][] dp = new int[m + 1][n + 1];

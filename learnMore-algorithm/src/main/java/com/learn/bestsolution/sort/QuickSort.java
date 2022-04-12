@@ -6,6 +6,9 @@ package com.learn.bestsolution.sort;
  * @date Created in 2019/9/10
  */
 public class QuickSort {
+    public static void main(String[] args) {
+        quickSort(new int[]{1, 6, 7, 6,5,19, 14}, 0, 6);
+    }
     public static void quickSort(int [] arr,int start,int end){
         if(start >= end || arr == null || arr.length == 0){
             return;
