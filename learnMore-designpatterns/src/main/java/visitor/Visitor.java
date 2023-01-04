@@ -6,6 +6,6 @@ package visitor;
  * @date Created in 2019/4/18 14:42
  */
 public interface Visitor {
-    void accept(File file);
-    void accept(Dir dir);
+    void visit(File file);
+    void visit(Dir dir);
 }

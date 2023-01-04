@@ -10,12 +10,12 @@ import java.util.Iterator;
 public class ListVisitor implements Visitor {
     private String currentDir="";
     @Override
-    public void accept(File file) {
+    public void visit(File file) {
         System.out.println(currentDir+"/"+file);
     }
 
     @Override
-    public void accept(Dir dir) {
+    public void visit(Dir dir) {
         System.out.println(currentDir+"/"+dir);
         String saveDir = currentDir;
         currentDir = currentDir+"/"+dir.getName();
